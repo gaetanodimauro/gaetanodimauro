@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gaetano Di Mauro — Musicista</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Bebas+Neue&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#080808;--bg2:#0e0e0e;--white:#f0ede8;--cream:#c8c0b0;--accent:#b8963e;--accent2:#7a5c20;--line:rgba(255,255,255,0.08)}
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--white);font-family:'Cormorant Garamond',serif;overflow-x:hidden;cursor:none}
+
+  .cursor{width:8px;height:8px;background:var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transition:transform .15s ease;mix-blend-mode:screen}
+  .cursor-ring{width:32px;height:32px;border:1px solid rgba(184,150,62,.5);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transition:transform .4s ease,width .3s,height .3s}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");opacity:.03;z-index:9990;pointer-events:none}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:2rem 4rem}
+  nav::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,8,8,.95),transparent);z-index:-1;pointer-events:none}
+  .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.2em;color:var(--white);text-decoration:none}
+  .nav-logo span{color:var(--accent)}
+  .nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+  .nav-links a{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cream);text-decoration:none;transition:color .3s}
+  .nav-links a:hover{color:var(--accent)}
+  .lang-switch{display:flex;gap:2px;margin-left:.5rem}
+  .lang-btn{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.12em;padding:.3rem .65rem;border:1px solid var(--line);background:transparent;color:var(--cream);cursor:none;transition:all .3s}
+  .lang-btn.active{border-color:var(--accent);color:var(--accent);background:rgba(184,150,62,.08)}
+  .lang-btn:hover:not(.active){border-color:var(--cream)}
+
+  #hero{height:100vh;position:relative;display:flex;align-items:flex-end;padding:0 4rem 5rem;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 30%,rgba(184,150,62,.06) 0%,transparent 60%),radial-gradient(ellipse 40% 60% at 10% 80%,rgba(184,150,62,.04) 0%,transparent 50%),linear-gradient(180deg,#080808 0%,#0a0908 100%)}
+  .hero-line{position:absolute;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,var(--accent2),transparent);opacity:.4}
+  .hero-line:nth-child(1){left:33.33%}.hero-line:nth-child(2){left:66.66%}
+  .hero-content{position:relative;z-index:2;max-width:900px}
+  .hero-tag{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;opacity:0;animation:fadeUp 1s ease .3s forwards}
+  .hero-tag::before{content:'';display:block;width:40px;height:1px;background:var(--accent)}
+  h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(5rem,13vw,14rem);line-height:.9;color:var(--white);opacity:0;animation:fadeUp 1s ease .5s forwards}
+  h1 em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:.6em;color:var(--cream);display:block}
+  .hero-sub{margin-top:2rem;font-size:1.1rem;font-weight:300;color:var(--cream);font-style:italic;max-width:420px;line-height:1.7;opacity:0;animation:fadeUp 1s ease .8s forwards}
+  .hero-scroll{position:absolute;right:4rem;bottom:5rem;writing-mode:vertical-rl;font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.2em;color:var(--cream);opacity:.5;display:flex;align-items:center;gap:1rem;animation:fadeIn 1s ease 1.5s both}
+  .hero-scroll::after{content:'';display:block;width:1px;height:60px;background:linear-gradient(to bottom,var(--cream),transparent);opacity:.5}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes fadeIn{from{opacity:0}to{opacity:.5}}
+
+  section{padding:8rem 4rem}
+  .section-label{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);margin-bottom:4rem;display:flex;align-items:center;gap:1.5rem}
+  .section-label::after{content:'';flex:1;height:1px;background:var(--line);max-width:100px}
+
+  #about{display:grid;grid-template-columns:1fr 1fr;gap:8rem;align-items:center;border-top:1px solid var(--line)}
+  .about-text h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,5vw,5rem);line-height:1;margin-bottom:2rem}
+  .about-text p{font-size:1.15rem;line-height:1.9;color:var(--cream);font-weight:300;margin-bottom:1.5rem}
+  .about-stats{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+  .stat{padding:2.5rem;background:var(--bg2);border:1px solid var(--line);transition:border-color .3s}
+  .stat:hover{border-color:var(--accent2)}
+  .stat-number{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:var(--accent);line-height:1;margin-bottom:.5rem}
+  .stat-label{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cream);opacity:.7}
+
+  #discografia{border-top:1px solid var(--line);background:var(--bg2)}
+  .disco-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:2px}
+  .release-card{background:var(--bg);padding:1.5rem;border:1px solid var(--line);position:relative;overflow:hidden;transition:transform .4s ease,border-color .3s;cursor:none}
+  .release-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--accent),transparent);transform:scaleX(0);transition:transform .4s ease}
+  .release-card:hover::before{transform:scaleX(1)}
+  .release-card:hover{transform:translateY(-4px);border-color:var(--accent2)}
+  .release-year{font-family:'Space Mono',monospace;font-size:.6rem;color:var(--accent);letter-spacing:.2em;margin-bottom:1rem}
+
+  .cover-wrap{position:relative;width:100%;aspect-ratio:1;margin-bottom:1.2rem;overflow:hidden;cursor:none}
+  .release-cover{width:100%;height:100%;object-fit:cover;filter:grayscale(15%);transition:filter .4s,transform .4s;display:block}
+  .release-card:hover .release-cover{filter:grayscale(0%)}
+  .cover-overlay{position:absolute;inset:0;background:rgba(8,8,8,.92);opacity:0;transition:opacity .35s;display:flex;flex-direction:column;justify-content:flex-start;padding:1rem;overflow-y:auto}
+  .cover-wrap:hover .cover-overlay{opacity:1}
+  .tracklist-title{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.1em;color:var(--accent);margin-bottom:.6rem;flex-shrink:0}
+  .track-row{display:flex;justify-content:space-between;align-items:baseline;padding:.2rem 0;border-bottom:1px solid rgba(255,255,255,.05)}
+  .track-num{font-family:'Space Mono',monospace;font-size:.5rem;color:var(--accent2);width:1.4rem;flex-shrink:0}
+  .track-name{font-family:'Cormorant Garamond',serif;font-size:.85rem;color:var(--cream);flex:1;padding:0 .4rem;line-height:1.3}
+  .track-dur{font-family:'Space Mono',monospace;font-size:.5rem;color:var(--cream);opacity:.5;flex-shrink:0}
+
+  .release-title{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.05em;margin-bottom:.4rem;color:var(--white)}
+  .release-type{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.15em;color:var(--cream);opacity:.6;text-transform:uppercase}
+
+  #press{border-top:1px solid var(--line)}
+  .press-intro{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,5rem);line-height:1;margin-bottom:4rem}
+  .press-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+  .press-card{background:var(--bg2);border:1px solid var(--line);padding:3rem;position:relative;overflow:hidden;transition:border-color .3s}
+  .press-card:hover{border-color:var(--accent2)}
+  .press-card::before{content:'\201C';position:absolute;top:-1rem;left:2rem;font-family:'Cormorant Garamond',serif;font-size:10rem;color:var(--accent);opacity:.08;line-height:1;pointer-events:none}
+  .press-cover{width:72px;height:72px;object-fit:cover;margin-bottom:1.8rem;border:1px solid var(--line)}
+  .press-quote{font-size:1.1rem;font-style:italic;font-weight:300;line-height:1.8;color:var(--white);margin-bottom:2rem}
+  .press-source{display:flex;align-items:center;gap:1.5rem}
+  .press-source-name{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+  .press-score{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--white);line-height:1}
+  .press-score span{font-size:.9rem;color:var(--cream);opacity:.5}
+  .press-year{font-family:'Space Mono',monospace;font-size:.52rem;color:var(--cream);opacity:.4;margin-top:.3rem;letter-spacing:.1em}
+
+  #galleria{border-top:1px solid var(--line);background:var(--bg2)}
+  .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+  .gallery-item{position:relative;overflow:hidden;aspect-ratio:1;cursor:none;background:#111}
+  .gallery-item:first-child{grid-column:span 2;grid-row:span 2}
+  .gallery-item img{width:100%;height:100%;object-fit:cover;filter:grayscale(20%) brightness(.85);transition:transform .6s ease,filter .4s ease;display:block}
+  .gallery-item:hover img{transform:scale(1.05);filter:grayscale(0%) brightness(1)}
+  .gallery-item::after{content:'+';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:3rem;color:var(--white);opacity:0;background:rgba(0,0,0,.3);transition:opacity .3s}
+  .gallery-item:hover::after{opacity:1}
+
+  .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:9000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+  .lightbox.active{opacity:1;pointer-events:all}
+  .lightbox img{max-width:90vw;max-height:90vh;object-fit:contain;border:1px solid var(--line)}
+  .lightbox-close{position:absolute;top:2rem;right:2rem;font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.2em;color:var(--cream);cursor:none;opacity:.6;transition:opacity .2s}
+  .lightbox-close:hover{opacity:1}
+  .lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--white);cursor:none;opacity:.4;transition:opacity .2s;padding:1rem}
+  .lightbox-nav:hover{opacity:1}
+  .lightbox-prev{left:2rem}.lightbox-next{right:2rem}
+
+  #listen{border-top:1px solid var(--line)}
+  .listen-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,6vw,6rem);line-height:1;margin-bottom:3rem}
+  .platforms{display:flex;flex-direction:column;gap:1px}
+  .platform-link{display:flex;align-items:center;justify-content:space-between;padding:1.8rem 2.5rem;background:var(--bg2);border:1px solid var(--line);text-decoration:none;color:var(--white);transition:background .3s,border-color .3s,transform .3s;cursor:none}
+  .platform-link:hover{background:#141414;border-color:var(--accent2);transform:translateX(8px)}
+  .platform-name{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.08em}
+  .platform-arrow{font-family:'Space Mono',monospace;font-size:.8rem;color:var(--accent);transition:transform .3s}
+  .platform-link:hover .platform-arrow{transform:translateX(8px)}
+  .platform-tag{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cream);opacity:.5}
+
+  #social{border-top:1px solid var(--line);background:var(--bg2)}
+  .social-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+  .social-card{padding:3rem 2rem;background:var(--bg);border:1px solid var(--line);text-decoration:none;color:var(--white);display:flex;flex-direction:column;gap:1rem;transition:background .3s,border-color .3s;cursor:none}
+  .social-card:hover{background:#111;border-color:var(--accent2)}
+  .social-icon{font-size:1.5rem;margin-bottom:.5rem}
+  .social-platform{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.08em}
+  .social-handle{font-family:'Space Mono',monospace;font-size:.6rem;color:var(--cream);opacity:.5;letter-spacing:.1em}
+
+  #contatti{border-top:1px solid var(--line);text-align:center;padding:10rem 4rem;position:relative;overflow:hidden}
+  #contatti::before{content:'CONTACT';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Bebas Neue',sans-serif;font-size:22vw;color:rgba(255,255,255,.02);white-space:nowrap;pointer-events:none;letter-spacing:.05em}
+  .contact-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,7vw,8rem);line-height:1;margin-bottom:1.5rem;position:relative}
+  .contact-sub{font-size:1.2rem;font-style:italic;color:var(--cream);font-weight:300;margin-bottom:3rem;position:relative}
+  .contact-btn{display:inline-block;padding:1.2rem 3.5rem;border:1px solid var(--accent);color:var(--accent);font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;transition:all .3s;position:relative;overflow:hidden;cursor:none}
+  .contact-btn::before{content:'';position:absolute;inset:0;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s ease;z-index:-1}
+  .contact-btn:hover{color:var(--bg)}.contact-btn:hover::before{transform:scaleX(1)}
+
+  footer{border-top:1px solid var(--line);padding:3rem 4rem;display:flex;justify-content:space-between;align-items:center;background:#040404}
+  .footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.2em;color:var(--cream);opacity:.5}
+  .footer-copy{font-family:'Space Mono',monospace;font-size:.55rem;color:var(--cream);opacity:.3;letter-spacing:.1em}
+
+  .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+
+  .cover-hint{position:absolute;bottom:.6rem;right:.6rem;font-family:'Space Mono',monospace;font-size:.45rem;letter-spacing:.1em;color:var(--accent);opacity:.7;text-transform:uppercase;pointer-events:none;transition:opacity .3s}
+  .cover-wrap:hover .cover-hint{opacity:0}
+
+  /* ── DJ SECTION ── */
+  #dj{border-top:1px solid var(--line)}
+  .dj-layout{display:grid;grid-template-columns:1fr 1fr;gap:8rem;align-items:start;margin-bottom:6rem}
+  .dj-text h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,5vw,5rem);line-height:1;margin-bottom:2rem}
+  .dj-text p{font-size:1.15rem;line-height:1.9;color:var(--cream);font-weight:300;margin-bottom:1.5rem}
+  .dj-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:2rem}
+  .dj-tag{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;padding:.4rem 1rem;border:1px solid var(--accent2);color:var(--accent);background:rgba(184,150,62,.05)}
+  .dj-visual{position:relative;display:flex;flex-direction:column;gap:2rem}
+  .dj-waveform{height:80px;display:flex;align-items:flex-end;gap:3px;padding:1rem;background:var(--bg2);border:1px solid var(--line)}
+  .dj-waveform span{flex:1;background:var(--accent);opacity:.6;border-radius:1px;animation:wave 1.2s ease-in-out infinite alternate}
+  .dj-waveform span:nth-child(odd){animation-delay:.1s;opacity:.3}
+  .dj-waveform span:nth-child(3n){animation-delay:.25s;opacity:.8}
+  .dj-waveform span:nth-child(4n){animation-delay:.4s;opacity:.4}
+  @keyframes wave{from{transform:scaleY(.3)}to{transform:scaleY(1)}}
+  .dj-stat-row{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+
+  .sets-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:0}
+  .set-card{background:var(--bg2);border:1px solid var(--line);padding:0;overflow:hidden;transition:border-color .3s;cursor:none}
+  .set-card:hover{border-color:var(--accent2)}
+  .set-embed{width:100%;height:120px;border:none;display:block}
+  .set-meta{padding:1.2rem 1.5rem}
+  .set-number{font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.2em;color:var(--accent);margin-bottom:.4rem}
+  .set-title{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.05em;color:var(--white);margin-bottom:.3rem}
+  .set-genre{font-family:'Space Mono',monospace;font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cream);opacity:.5}
+
+  .mixcloud-cta{margin-top:3rem;text-align:center;padding:3rem;background:var(--bg2);border:1px solid var(--line);position:relative;overflow:hidden}
+  .mixcloud-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 100% at 50% 0%,rgba(184,150,62,.05),transparent)}
+  .mixcloud-cta p{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cream);opacity:.6;margin-bottom:1.5rem}
+
+  @media(max-width:768px){
+    nav{padding:1.5rem 2rem}.nav-links{display:none}
+    section{padding:5rem 2rem}#hero{padding:0 2rem 4rem}
+    #about{grid-template-columns:1fr;gap:4rem}
+    .press-grid{grid-template-columns:1fr}
+    .social-grid{grid-template-columns:1fr 1fr}
+    footer{flex-direction:column;gap:1rem;text-align:center}
+    .hero-scroll{display:none}
+    .gallery-grid{grid-template-columns:1fr 1fr}
+    .gallery-item:first-child{grid-column:span 2;grid-row:span 1}
+    .cover-overlay{opacity:0!important}
+    .dj-layout{grid-template-columns:1fr;gap:4rem}
+    .sets-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="#" class="nav-logo">G<span>.</span>DI MAURO</a>
+  <ul class="nav-links">
+    <li><a href="#about"       data-it="Biografia"   data-en="Biography">Biografia</a></li>
+    <li><a href="#discografia" data-it="Discografia"  data-en="Discography">Discografia</a></li>
+    <li><a href="#press">Press</a></li>
+    <li><a href="#galleria"   data-it="Galleria"    data-en="Gallery">Galleria</a></li>
+    <li><a href="#dj"         data-it="DJ Set"      data-en="DJ Set">DJ Set</a></li>
+    <li><a href="#listen"     data-it="Ascolta"     data-en="Listen">Ascolta</a></li>
+    <li><a href="#contatti"   data-it="Contatti"    data-en="Contact">Contatti</a></li>
+    <li>
+      <div class="lang-switch">
+        <button class="lang-btn active" onclick="setLang('it')">IT</button>
+        <button class="lang-btn"        onclick="setLang('en')">EN</button>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div><div class="hero-line"></div>
+  <div class="hero-content">
+    <p class="hero-tag" data-it="Musicista · Produttore · Compositore · DJ" data-en="Musician · Producer · Composer · DJ">Musicista · Produttore · Compositore · DJ</p>
+    <h1>Gaetano<em>Di Mauro</em></h1>
+    <p class="hero-sub"
+       data-it="Musicista, compositore e produttore catanese. Dall'ambient all'elettronica, dalla chitarra alla computer music. Ultimo lavoro: Rinse — 2025."
+       data-en="Musician, composer and producer from Catania, Sicily. From ambient to electronics, from guitar to computer music. Latest release: Rinse — 2025.">
+      Musicista, compositore e produttore catanese. Dall'ambient all'elettronica, dalla chitarra alla computer music. Ultimo lavoro: <em>Rinse</em> — 2025.
+    </p>
+  </div>
+  <div class="hero-scroll" data-it="Scorri" data-en="Scroll">Scorri</div>
+</section>
+
+<section id="about">
+  <div class="about-text reveal">
+    <div class="section-label" data-it="Biografia" data-en="Biography">Biografia</div>
+    <h2 data-it="Suono come linguaggio" data-en="Sound as language">Suono come linguaggio</h2>
+    <p data-it="Gaetano Di Mauro è un musicista, compositore e produttore catanese. Appassionato di musica fin da bambino, ha iniziato a suonare la chitarra nel 1997, prima da autodidatta e poi al CESM di Catania. Le sue influenze spaziano da Pink Floyd e Pat Metheny a Miles Davis, Ennio Morricone e John Williams."
+       data-en="Gaetano Di Mauro is a musician, composer and producer from Catania, Sicily. Passionate about music since childhood, he began playing guitar in 1997, first self-taught and later at the CESM in Catania. His influences range from Pink Floyd and Pat Metheny to Miles Davis, Ennio Morricone and John Williams.">
+      Gaetano Di Mauro è un musicista, compositore e produttore catanese. Appassionato di musica fin da bambino, ha iniziato a suonare la chitarra nel 1997, prima da autodidatta e poi al CESM di Catania. Le sue influenze spaziano da Pink Floyd e Pat Metheny a Miles Davis, Ennio Morricone e John Williams.
+    </p>
+    <p data-it="La sua discografia conta quattordici pubblicazioni tra album, EP e singoli — dall'ambient classico di Adagio Espressivo (2015) fino al recente Rinse (2025), passando per concept album come Television e collaborazioni come Interplay con Antonino Cortese."
+       data-en="His discography spans fourteen releases including albums, EPs and singles — from the classical ambient of Adagio Espressivo (2015) to the recent Rinse (2025), including concept albums like Television and collaborations like Interplay with Antonino Cortese.">
+      La sua discografia conta quattordici pubblicazioni tra album, EP e singoli — dall'ambient classico di <em>Adagio Espressivo</em> (2015) fino al recente <em>Rinse</em> (2025), passando per concept album come <em>Television</em> e collaborazioni come <em>Interplay</em> con Antonino Cortese.
+    </p>
+  </div>
+  <div class="about-stats reveal">
+    <div class="stat"><div class="stat-number">20+</div><div class="stat-label" data-it="Anni di carriera" data-en="Years of career">Anni di carriera</div></div>
+    <div class="stat"><div class="stat-number">14</div><div class="stat-label" data-it="Pubblicazioni" data-en="Releases">Pubblicazioni</div></div>
+    <div class="stat"><div class="stat-number">CT</div><div class="stat-label" data-it="Catania, Sicilia" data-en="Catania, Sicily">Catania, Sicilia</div></div>
+    <div class="stat"><div class="stat-number">7K</div><div class="stat-label" data-it="Ascoltatori / mese" data-en="Monthly listeners">Ascoltatori / mese</div></div>
+  </div>
+</section>
+
+<section id="discografia">
+  <div class="section-label reveal" data-it="Discografia — passa il mouse sulla cover per vedere i brani" data-en="Discography — hover the cover to see tracks">Discografia — passa il mouse sulla cover per vedere i brani</div>
+  <div class="disco-grid" id="discoGrid"></div>
+</section>
+
+<section id="press">
+  <div class="section-label reveal">Press & Reviews</div>
+  <h2 class="press-intro reveal" data-it="La critica ha scritto di me" data-en="What the press said">La critica<br>ha scritto di me</h2>
+  <div class="press-grid">
+    <div class="press-card reveal">
+      <img src="https://gaetanodimauromusic.altervista.org/wp-content/uploads/2026/03/COVER-AUSOSA-960x960.jpg" class="press-cover" alt="Ausosa">
+      <p class="press-quote" data-it='"Una narrazione interessante e più ambiziosa della stessa musica che la contiene. Echi di Pink Floyd, Moderat, Morricone, Einaudi e Metheny in un\'alternanza di rock, fusion, elettronica e classica minimale."' data-en='"An interesting narrative, more ambitious than the music itself. Echoes of Pink Floyd, Moderat, Morricone, Einaudi and Metheny across rock, fusion, electronics and minimal classical."'>
+        "Una narrazione interessante e più ambiziosa della stessa musica che la contiene. Echi di Pink Floyd, Moderat, Morricone, Einaudi e Metheny in un'alternanza di rock, fusion, elettronica e classica minimale."
+      </p>
+      <div class="press-source"><div><div class="press-source-name">Sergio Sciambra — Rockit.it</div><div class="press-year">Ausosa, 2024</div></div></div>
+    </div>
+    <div class="press-card reveal">
+      <img src="https://gaetanodimauromusic.altervista.org/wp-content/uploads/2019/12/cover-960x960.jpg" class="press-cover" alt="Television">
+      <p class="press-quote" data-it='"Un disco coraggioso. Il Catanese Gaetano Di Mauro confeziona un Concept Album elettronico strumentale di grande spessore — scorre in maniera sempre piacevole tenendoti compagnia come farebbe la Tv."' data-en='"A brave record. Catanian Gaetano Di Mauro crafts an electronic instrumental Concept Album of great depth — it flows pleasantly, keeping you company just like TV."'>
+        "Un disco coraggioso. Il Catanese Gaetano Di Mauro confeziona un Concept Album elettronico strumentale di grande spessore — scorre in maniera sempre piacevole tenendoti compagnia come farebbe la Tv."
+      </p>
+      <div class="press-source"><div><div class="press-source-name">AiM — Alternative Indie Music</div><div class="press-year">Television, 2020</div></div><div class="press-score">10 <span>/ 10</span></div></div>
+    </div>
+    <div class="press-card reveal">
+      <img src="https://gaetanodimauromusic.altervista.org/wp-content/uploads/2019/12/cover-960x960.jpg" class="press-cover" alt="Television">
+      <p class="press-quote" data-it='"La musica di Di Mauro non si limita a commentare, ma produce senso. Una vera e propria esperienza sensoriale che dalle orecchie si trasmette al cervello, creando immagini vere e proprie."' data-en='"Di Mauro\'s music does not merely comment — it produces meaning. A true sensory experience that travels from the ears to the brain, creating vivid images."'>
+        "La musica di Di Mauro non si limita a commentare, ma produce senso. Una vera e propria esperienza sensoriale che dalle orecchie si trasmette al cervello, creando immagini vere e proprie."
+      </p>
+      <div class="press-source"><div><div class="press-source-name">Europa e Cultura Elettronica</div><div class="press-year">Television, 2020</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="galleria">
+  <div class="section-label reveal" data-it="Galleria" data-en="Gallery">Galleria</div>
+  <div class="gallery-grid">
+    <div class="gallery-item reveal" onclick="openLightbox(0)"><img src="https://gaetanodimauromusic.altervista.org/wp-content/uploads/2019/04/1-copia-3-scaled.jpg" alt=""></div>
+    <div class="gallery-item reveal" onclick="openLightbox(1)"><img src="https://gaetanodimauromusic.altervista.org/wp-content/uploads/2017/04/gaetano-di-mauro1.jpg" alt=""></div>
+    <div class="gallery-item reveal" onclick="openLightbox(2)"><img src="https://gaetanodimauromusic.altervista.org/wp-content/uploads/2018/05/Foto-del-25-03-15-alle-12.30-2-4-e1550945282241.jpg" alt=""></div>
+    <div class="gallery-item reveal" onclick="openLightbox(3)"><img src="https://gaetanodimauromusic.altervista.org/wp-content/uploads/2019/02/2019-02-23-23.16.14-e1556731172471.jpg" alt=""></div>
+    <div class="gallery-item reveal" onclick="openLightbox(4)"><img src="https://gaetanodimauromusic.altervista.org/wp-content/uploads/2019/02/20180404_094420.jpg" alt=""></div>
+    <div class="gallery-item reveal" onclick="openLightbox(5)"><img src="https://gaetanodimauromusic.altervista.org/wp-content/uploads/2017/04/gaetano-di-mauro4.jpeg" alt=""></div>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-close" id="lb-close" onclick="closeLightbox()">ESC / CHIUDI</div>
+  <div class="lightbox-nav lightbox-prev" onclick="prevPhoto(event)">←</div>
+  <img id="lightbox-img" src="" alt="">
+  <div class="lightbox-nav lightbox-next" onclick="nextPhoto(event)">→</div>
+</div>
+
+<section id="dj">
+  <div class="section-label reveal" data-it="DJ Set · Mix" data-en="DJ Set · Mix">DJ Set · Mix</div>
+
+  <div class="dj-layout">
+    <div class="dj-text reveal">
+      <h2 data-it="Dietro ai piatti" data-en="Behind the decks">Dietro<br>ai piatti</h2>
+      <p data-it="Oltre alla composizione e alla produzione musicale, Gaetano porta la sua sensibilità sonora anche nei DJ set: percorsi elettronici che spaziano dall'ambient all'elettronica più sperimentale, con un'attenzione ossessiva per i dettagli e per la costruzione di atmosfere."
+         data-en="Beyond composition and music production, Gaetano brings his sonic sensibility to his DJ sets: electronic journeys spanning from ambient to more experimental electronics, with an obsessive attention to detail and atmosphere-building.">
+        Oltre alla composizione e alla produzione musicale, Gaetano porta la sua sensibilità sonora anche nei DJ set: percorsi elettronici che spaziano dall'ambient all'elettronica più sperimentale, con un'attenzione ossessiva per i dettagli e per la costruzione di atmosfere.
+      </p>
+      <p data-it="Ogni mix è un viaggio — non una semplice selezione di brani, ma una narrazione coerente che riflette la stessa cura che mette in ogni sua produzione originale."
+         data-en="Every mix is a journey — not a simple track selection, but a coherent narrative that reflects the same care he puts into every original production.">
+        Ogni mix è un viaggio — non una semplice selezione di brani, ma una narrazione coerente che riflette la stessa cura che mette in ogni sua produzione originale.
+      </p>
+      <div class="dj-tags">
+        <span class="dj-tag">Ambient</span>
+        <span class="dj-tag">Electronic</span>
+        <span class="dj-tag">Experimental</span>
+        <span class="dj-tag">Downtempo</span>
+        <span class="dj-tag">Mixcloud</span>
+      </div>
+    </div>
+
+    <div class="dj-visual reveal">
+      <div class="dj-waveform">
+        <span style="height:40%"></span><span style="height:70%"></span><span style="height:30%"></span>
+        <span style="height:90%"></span><span style="height:50%"></span><span style="height:80%"></span>
+        <span style="height:25%"></span><span style="height:65%"></span><span style="height:45%"></span>
+        <span style="height:85%"></span><span style="height:35%"></span><span style="height:75%"></span>
+        <span style="height:55%"></span><span style="height:95%"></span><span style="height:40%"></span>
+        <span style="height:60%"></span><span style="height:30%"></span><span style="height:70%"></span>
+        <span style="height:50%"></span><span style="height:88%"></span><span style="height:42%"></span>
+        <span style="height:72%"></span><span style="height:28%"></span><span style="height:62%"></span>
+        <span style="height:48%"></span><span style="height:82%"></span><span style="height:38%"></span>
+        <span style="height:92%"></span><span style="height:52%"></span><span style="height:68%"></span>
+      </div>
+      <div class="dj-stat-row">
+        <div class="stat"><div class="stat-number">∞</div><div class="stat-label" data-it="Set pubblicati" data-en="Published sets">Set pubblicati</div></div>
+        <div class="stat"><div class="stat-number">MC</div><div class="stat-label">Mixcloud</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mixcloud embeds: i 3 set più recenti -->
+  <div class="section-label reveal" style="margin-bottom:2rem" data-it="Ultimi set" data-en="Latest sets">Ultimi set</div>
+  <div class="sets-grid" style="grid-template-columns:repeat(2,1fr)">
+    <div class="set-card reveal">
+      <iframe class="set-embed" src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2Fgaetano-di-mauro%2F" frameborder="0" allow="autoplay"></iframe>
+      <div class="set-meta">
+        <div class="set-number">ULTIMO SET</div>
+        <div class="set-title" data-it="Ultimo set pubblicato" data-en="Latest published set">Ultimo set pubblicato</div>
+        <div class="set-genre">Electronic · Experimental</div>
+      </div>
+    </div>
+    <div class="set-card reveal">
+      <div class="set-meta" style="padding:3rem 1.5rem;display:flex;flex-direction:column;justify-content:center;height:100%">
+        <div class="set-number" style="margin-bottom:1rem">TUTTI I SET</div>
+        <div class="set-title" style="font-size:1.4rem;margin-bottom:1rem" data-it="Visita il profilo Mixcloud" data-en="Visit Mixcloud profile">Visita il profilo<br>Mixcloud</div>
+        <div class="set-genre" style="margin-bottom:2rem" data-it="Tutti i mix di Gaetano in un unico posto" data-en="All of Gaetano's mixes in one place">Tutti i mix in un unico posto</div>
+        <a href="https://www.mixcloud.com/gaetano-di-mauro/" target="_blank" class="contact-btn" style="display:inline-block;width:fit-content" data-it="Apri Mixcloud" data-en="Open Mixcloud">Apri Mixcloud ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="listen">
+  <div class="section-label reveal" data-it="Ascolta" data-en="Listen">Ascolta</div>
+  <h2 class="listen-title reveal" data-it="La mia musica su tutte le piattaforme" data-en="My music on all platforms">La mia musica<br>su tutte le piattaforme</h2>
+  <div class="platforms reveal">
+    <a href="https://open.spotify.com/intl-it/artist/6g0cjIYZJshZkCjBRf6W8Z?si=vl7R_ev6QR2UIk93NBlziw" target="_blank" class="platform-link">
+      <div><div class="platform-name">Spotify</div><div class="platform-tag">Streaming</div></div><div class="platform-arrow">→</div>
+    </a>
+    <a href="https://music.apple.com/it/artist/gaetano-di-mauro/441408876?l=en" target="_blank" class="platform-link">
+      <div><div class="platform-name">Apple Music</div><div class="platform-tag">Streaming</div></div><div class="platform-arrow">→</div>
+    </a>
+    <a href="https://soundcloud.com/gaetanodimauro" target="_blank" class="platform-link">
+      <div><div class="platform-name">SoundCloud</div><div class="platform-tag">Streaming</div></div><div class="platform-arrow">→</div>
+    </a>
+    <a href="https://www.youtube.com/c/GaetanoDiMauro" target="_blank" class="platform-link">
+      <div><div class="platform-name">YouTube</div><div class="platform-tag" data-it="Video & Musica" data-en="Video & Music">Video & Musica</div></div><div class="platform-arrow">→</div>
+    </a>
+  </div>
+</section>
+
+<section id="social">
+  <div class="section-label reveal" data-it="Seguimi" data-en="Follow me">Seguimi</div>
+  <div class="social-grid" style="grid-template-columns:repeat(5,1fr)">
+    <a href="https://www.instagram.com/gd_yeah" target="_blank" class="social-card reveal"><div class="social-icon">📷</div><div class="social-platform">Instagram</div><div class="social-handle">@gd_yeah</div></a>
+    <a href="https://www.facebook.com/GaetanoDiMauro/" target="_blank" class="social-card reveal"><div class="social-icon">◆</div><div class="social-platform">Facebook</div><div class="social-handle">GaetanoDiMauro</div></a>
+    <a href="https://x.com/GDgaetano" target="_blank" class="social-card reveal"><div class="social-icon">✕</div><div class="social-platform">Twitter / X</div><div class="social-handle">@GDgaetano</div></a>
+    <a href="https://www.youtube.com/c/GaetanoDiMauro" target="_blank" class="social-card reveal"><div class="social-icon">▶</div><div class="social-platform">YouTube</div><div class="social-handle">GaetanoDiMauro</div></a>
+    <a href="https://soundcloud.com/gaetanodimauro" target="_blank" class="social-card reveal"><div class="social-icon">☁</div><div class="social-platform">SoundCloud</div><div class="social-handle">gaetanodimauro</div></a>
+  </div>
+</section>
+
+<section id="contatti">
+  <div class="section-label reveal" data-it="Contatti" data-en="Contact">Contatti</div>
+  <h2 class="contact-title reveal" data-it="Lavoriamo insieme" data-en="Let's work together">Lavoriamo insieme</h2>
+  <p class="contact-sub reveal" data-it="Per collaborazioni, booking e produzioni" data-en="For collaborations, booking and productions">Per collaborazioni, booking e produzioni</p>
+  <a href="mailto:theampmusic@gmail.com" class="contact-btn reveal" data-it="Scrivimi" data-en="Get in touch">Scrivimi</a>
+</section>
+
+<footer>
+  <div class="footer-logo">Gaetano Di Mauro</div>
+  <div style="display:flex;gap:1.5rem;align-items:center">
+    <a href="https://www.instagram.com/gd_yeah" target="_blank" style="font-family:'Space Mono',monospace;font-size:.55rem;color:var(--cream);opacity:.4;text-decoration:none;letter-spacing:.1em;transition:opacity .2s" onmouseover="this.style.opacity='.9'" onmouseout="this.style.opacity='.4'">IG</a>
+    <a href="https://www.facebook.com/GaetanoDiMauro/" target="_blank" style="font-family:'Space Mono',monospace;font-size:.55rem;color:var(--cream);opacity:.4;text-decoration:none;letter-spacing:.1em;transition:opacity .2s" onmouseover="this.style.opacity='.9'" onmouseout="this.style.opacity='.4'">FB</a>
+    <a href="https://x.com/GDgaetano" target="_blank" style="font-family:'Space Mono',monospace;font-size:.55rem;color:var(--cream);opacity:.4;text-decoration:none;letter-spacing:.1em;transition:opacity .2s" onmouseover="this.style.opacity='.9'" onmouseout="this.style.opacity='.4'">X</a>
+    <a href="https://www.youtube.com/c/GaetanoDiMauro" target="_blank" style="font-family:'Space Mono',monospace;font-size:.55rem;color:var(--cream);opacity:.4;text-decoration:none;letter-spacing:.1em;transition:opacity .2s" onmouseover="this.style.opacity='.9'" onmouseout="this.style.opacity='.4'">YT</a>
+    <a href="https://open.spotify.com/intl-it/artist/6g0cjIYZJshZkCjBRf6W8Z" target="_blank" style="font-family:'Space Mono',monospace;font-size:.55rem;color:var(--cream);opacity:.4;text-decoration:none;letter-spacing:.1em;transition:opacity .2s" onmouseover="this.style.opacity='.9'" onmouseout="this.style.opacity='.4'">SP</a>
+  </div>
+  <div class="footer-copy">© 2026 — <span data-it="Tutti i diritti riservati" data-en="All rights reserved">Tutti i diritti riservati</span></div>
+</footer>
+
+<script>
+const DISCO = [
+  {
+    year:'2025', title:'Rinse', type:{it:'Singolo',en:'Single'},
+    cover:'https://gaetanodimauromusic.altervista.org/wp-content/uploads/2026/04/Rinse-Cover-scaled.jpg',
+    tracks:[{n:'Rinse',d:'3:21'}]
+  },
+  {
+    year:'2024', title:'Ausosa', type:{it:'Album',en:'Album'},
+    cover:'https://gaetanodimauromusic.altervista.org/wp-content/uploads/2026/03/COVER-AUSOSA-960x960.jpg',
+    tracks:[
+      {n:'Mr Werran',d:'4:38'},{n:'Jebel Sahaba',d:'5:12'},{n:'Lus ad bellum',d:'4:55'},
+      {n:'Deserere',d:'5:08'},{n:'Rides on',d:'4:22'},{n:'Bravado',d:'4:44'},
+      {n:'Eirene\'s flowers',d:'5:01'},{n:'Red',d:'4:48'},{n:'Colors drips on my face',d:'5:07'}
+    ]
+  },
+  {
+    year:'2021', title:'Moderno', type:{it:'Singolo',en:'Single'},
+    cover:'https://gaetanodimauromusic.altervista.org/wp-content/uploads/2026/04/cover-3000-scaled.jpg',
+    tracks:[{n:'Moderno',d:'4:19'}]
+  },
+  {
+    year:'2021', title:'Chasing The Sun', type:{it:'EP',en:'EP'},
+    cover:'https://gaetanodimauromusic.altervista.org/wp-content/uploads/2026/04/Chasing-the-sun-3000-960x960.jpg',
+    tracks:[
+      {n:'Incandescence',d:'4:31'},{n:'Chasing The Sun',d:'5:02'},
+      {n:'Chasing The Sun (Alt. Mix)',d:'4:58'},{n:'Chasing The Sun (Short Edit)',d:'3:41'},
+      {n:'Electromagnetic Voices',d:'4:34'}
+    ]
+  },
+  {
+    year:'2021', title:'Music Like Water', type:{it:'Album',en:'Album'},
+    cover:'https://gaetanodimauromusic.altervista.org/wp-content/uploads/2026/04/193668231_208061784479216_6697244401074431514_n.jpg',
+    tracks:[
+      {n:'71%',d:'4:48'},{n:'Chasing the sun',d:'5:02'},{n:'Lampranthus (MLW Version)',d:'5:11'},
+      {n:'In my time',d:'5:24'},{n:'Archi / La conclusione (MLW)',d:'4:56'},{n:'Aeroplano di carta',d:'4:38'},
+      {n:'Sonico',d:'5:03'},{n:'Another part of the stage (MLW)',d:'5:12'},
+      {n:'Come quando si sente (MLW)',d:'5:08'},{n:'You was air',d:'4:41'},{n:'A little piece of theatre',d:'4:49'}
+    ]
+  },
+  {
+    year:'2021', title:'Interplay', type:{it:'EP · con Antonino Cortese',en:'EP · with Antonino Cortese'},
+    cover:'https://gaetanodimauromusic.altervista.org/wp-content/uploads/2021/03/Gaetano-Di-Mauro-Antonino-Cortese-Interplay-Cover-album-960x960.png',
+    tracks:[
+      {n:'Beginning of...',d:'4:22'},{n:'We are',d:'5:01'},{n:'Looking out',d:'4:48'},
+      {n:'At the sea',d:'4:52'},{n:'La passiata',d:'4:07'}
+    ]
+  },
+  {
+    year:'2020', title:'Everything We Know', type:{it:'Singolo · Pt. 1 & 2',en:'Single · Pt. 1 & 2'},
+    cover:'https://gaetanodimauromusic.altervista.org/wp-content/uploads/2020/02/Everything-we-know-part-I-and-II-Original-Remix-960x960.jpg',
+    tracks:[{n:'Everything we know, Pt.1 & 2',d:'7:24'}]
+  },
+  {
+    year:'2019', title:'Television', type:{it:'Album',en:'Album'},
+    cover:'https://gaetanodimauromusic.altervista.org/wp-content/uploads/2019/12/cover-960x960.jpg',
+    tracks:[
+      {n:'Broadcast',d:'3:42'},{n:'Zapping',d:'4:11'},{n:'Palinsesto',d:'3:58'},
+      {n:'Ultra light',d:'4:22'},{n:'PP (searching for)',d:'3:55'},{n:'Everything we know pt. I & II',d:'7:24'},
+      {n:'Sonico',d:'4:18'},{n:'Channel 16',d:'3:51'},{n:'In my time',d:'4:44'},
+      {n:'Lampranthus',d:'3:39'},{n:'Colors',d:'4:02'},{n:'Visions',d:'3:31'},{n:'Turn off',d:'3:33'}
+    ]
+  },
+  {
+    year:'2018', title:'Une Ètude', type:{it:'Album',en:'Album'},
+    cover:'https://gaetanodimauromusic.altervista.org/wp-content/uploads/2019/02/cover-yeah-copy-960x960.jpeg',
+    tracks:[
+      {n:'Una mattina',d:'2:41'},{n:'Aeroplano di carta',d:'2:48'},{n:'Verso la stazione',d:'2:52'},
+      {n:'Il treno in paese',d:'2:44'},{n:'Sta nevicando',d:'2:38'},{n:'Fuori casa',d:'2:51'},
+      {n:'La piccola parte di una foglia',d:'2:44'},{n:'Telefono televisione e pensieri',d:'2:48'},
+      {n:'Un viaggio',d:'2:53'},{n:'Come quando si sente',d:'2:47'},{n:'Per la via / Interlude',d:'2:41'},
+      {n:'Pensando',d:'2:39'},{n:'Pensavo prima',d:'2:44'},{n:'Archi / La conclusione',d:'2:52'}
+    ]
+  },
+  {
+    year:'2015', title:'Around the Velvet', type:{it:'EP · B-Side Adagio Espressivo',en:'EP · B-Side Adagio Espressivo'},
+    cover:'https://gaetanodimauromusic.altervista.org/wp-content/uploads/2016/11/Cover-Around-the-velvet-B-SIDE-Adagio-Espressivo-960x960.jpg',
+    tracks:[
+            {n:'Another part of the stage',d:'4:12'},
+      {n:'Stone paper',d:'3:58'},
+      {n:'Sad story of a detective',d:'4:05'},
+      {n:'Loupe',d:'3:30'},
+      {n:'Books and pages',d:'4:20'},
+      {n:'Retrò',d:'3:15'}
+    ]
+  },
+  {
+    year:'2015', title:'Adagio Espressivo', type:{it:'Album',en:'Album'},
+    cover:'https://gaetanodimauromusic.altervista.org/wp-content/uploads/2016/11/Cover-Adagio-Espressivo-960x960.jpg',
+    tracks:[
+      {n:'Dancer and slave',d:'2:58'},{n:'Behind the stage',d:'3:04'},{n:'Next to you',d:'2:48'},
+      {n:'Majestic',d:'2:51'},{n:'Pianosa',d:'2:55'},{n:'In the middle of violet',d:'3:01'},
+      {n:'Sea',d:'2:44'},{n:'What does it mean?',d:'2:52'},{n:'On',d:'2:48'},
+      {n:'More and again',d:'2:55'},{n:'Pantomima',d:'2:51'},{n:'An illusion of you',d:'2:58'},
+      {n:'Short theme in G major',d:'2:41'},{n:'Don\'t be gone too long',d:'2:52'},
+      {n:'A little piece of theatre',d:'2:49'},{n:'When the rain comes to town',d:'2:55'},
+      {n:'Fanfarina',d:'2:44'},{n:'Glass',d:'2:48'},{n:'Piece of love',d:'2:51'},
+      {n:'Cinema 212',d:'2:55'},{n:'You was air',d:'2:41'},{n:'E.city',d:'2:48'},
+      {n:'Nebula',d:'2:52'},{n:'Coda',d:'2:44'}
+    ]
+  }
+];
+
+function buildDisco(lang) {
+  const grid = document.getElementById('discoGrid');
+  grid.innerHTML = '';
+  DISCO.forEach(d => {
+    const typeText = typeof d.type === 'string' ? d.type : (d.type[lang] || d.type.it);
+    const hintText = lang === 'it' ? 'tracklist' : 'tracklist';
+    const tracksHTML = d.tracks.map((t,i) =>
+      `<div class="track-row"><span class="track-num">${String(i+1).padStart(2,'0')}</span><span class="track-name">${t.n}</span><span class="track-dur">${t.d}</span></div>`
+    ).join('');
+    const card = document.createElement('div');
+    card.className = 'release-card reveal';
+    card.innerHTML = `
+      <div class="release-year">${d.year}</div>
+      <div class="cover-wrap">
+        <img src="${d.cover}" class="release-cover" alt="${d.title}" loading="lazy">
+        <div class="cover-overlay">
+          <div class="tracklist-title">${d.title}</div>
+          ${tracksHTML}
+        </div>
+        <div class="cover-hint">${hintText} ▸</div>
+      </div>
+      <div class="release-title">${d.title}</div>
+      <div class="release-type">${typeText}</div>
+    `;
+    grid.appendChild(card);
+  });
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el => obs.observe(el));
+}
+
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx-4+'px';cursor.style.top=my-4+'px';});
+(function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx-16+'px';ring.style.top=ry-16+'px';requestAnimationFrame(animRing);})();
+document.addEventListener('mouseover',e=>{if(e.target.closest('a,button,.cover-wrap,.gallery-item')){cursor.style.transform='scale(3)';ring.style.width='50px';ring.style.height='50px';}});
+document.addEventListener('mouseout',e=>{if(e.target.closest('a,button,.cover-wrap,.gallery-item')){cursor.style.transform='scale(1)';ring.style.width='32px';ring.style.height='32px';}});
+
+const photos=['https://gaetanodimauromusic.altervista.org/wp-content/uploads/2019/04/1-copia-3-scaled.jpg','https://gaetanodimauromusic.altervista.org/wp-content/uploads/2017/04/gaetano-di-mauro1.jpg','https://gaetanodimauromusic.altervista.org/wp-content/uploads/2018/05/Foto-del-25-03-15-alle-12.30-2-4-e1550945282241.jpg','https://gaetanodimauromusic.altervista.org/wp-content/uploads/2019/02/2019-02-23-23.16.14-e1556731172471.jpg','https://gaetanodimauromusic.altervista.org/wp-content/uploads/2019/02/20180404_094420.jpg','https://gaetanodimauromusic.altervista.org/wp-content/uploads/2017/04/gaetano-di-mauro4.jpeg'];
+let cur=0;
+function openLightbox(i){cur=i;document.getElementById('lightbox-img').src=photos[i];document.getElementById('lightbox').classList.add('active');document.body.style.overflow='hidden';}
+function closeLightbox(e){if(!e||e.target!==document.getElementById('lightbox-img')){document.getElementById('lightbox').classList.remove('active');document.body.style.overflow='';}}
+function prevPhoto(e){e.stopPropagation();cur=(cur-1+photos.length)%photos.length;document.getElementById('lightbox-img').src=photos[cur];}
+function nextPhoto(e){e.stopPropagation();cur=(cur+1)%photos.length;document.getElementById('lightbox-img').src=photos[cur];}
+
+const obs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('visible'),i*80);});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+function setLang(lang){
+  document.querySelectorAll('[data-it]').forEach(el=>{
+    const val=lang==='it'?el.dataset.it:el.dataset.en;
+    if(val!==undefined)el.textContent=val;
+  });
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.textContent===lang.toUpperCase()));
+  buildDisco(lang);
+}
+
+buildDisco('it');
+</script>
+</body>
+</html>
