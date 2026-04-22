@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adagio Espressivo — Gaetano Di Mauro</title>
+<meta name="description" content="Adagio Espressivo (2015) — primo album di Gaetano Di Mauro. Analisi musicale, storia, brani e concept della copertina. Modern Classical da Catania.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #060608;
+  --bg2: #0c0c10;
+  --bg3: #111118;
+  --white: #f0ede8;
+  --cream: #c8c0b0;
+  --gold: #b8963e;
+  --gold2: #7a5c20;
+  --gold3: rgba(184,150,62,.08);
+  --line: rgba(255,255,255,0.07);
+  --line2: rgba(184,150,62,0.2);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Cormorant Garamond', serif;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── CURSOR ── */
+.cursor { width:8px; height:8px; background:var(--gold); border-radius:50%; position:fixed; pointer-events:none; z-index:9999; transition:transform .15s; mix-blend-mode:screen; }
+.cursor-ring { width:30px; height:30px; border:1px solid rgba(184,150,62,.4); border-radius:50%; position:fixed; pointer-events:none; z-index:9998; transition:transform .4s, width .3s, height .3s; }
+
+/* ── GRAIN ── */
+body::before {
+  content:''; position:fixed; inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity:.025; z-index:9990; pointer-events:none;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:1.8rem 4rem;
+}
+nav::after {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(to bottom, rgba(6,6,8,.97), transparent);
+  z-index:-1; pointer-events:none;
+}
+.nav-logo {
+  font-family:'Bebas Neue',sans-serif; font-size:1.2rem;
+  letter-spacing:.2em; color:var(--white); text-decoration:none;
+}
+.nav-logo span { color:var(--gold); }
+.nav-back {
+  font-family:'Space Mono',monospace; font-size:.58rem;
+  letter-spacing:.15em; text-transform:uppercase;
+  color:var(--cream); text-decoration:none;
+  border:1px solid var(--line2); padding:.5rem 1.2rem;
+  transition:all .3s; cursor:none;
+}
+.nav-back:hover { border-color:var(--gold); color:var(--gold); }
+
+/* ── HERO ── */
+#hero {
+  min-height:100vh; position:relative;
+  display:grid; grid-template-columns:1fr 1fr;
+  align-items:end; padding:0;
+  overflow:hidden;
+}
+.hero-left {
+  padding:12rem 4rem 6rem;
+  position:relative; z-index:2;
+  display:flex; flex-direction:column; justify-content:flex-end;
+}
+.hero-right {
+  position:relative; overflow:hidden; min-height:100vh;
+}
+.hero-cover {
+  width:100%; height:100%; object-fit:cover;
+  filter:grayscale(20%) brightness(.7);
+  display:block;
+  transform:scale(1.05);
+  animation: slowZoom 20s ease-out forwards;
+}
+@keyframes slowZoom { from{transform:scale(1.08)} to{transform:scale(1.0)} }
+.hero-right::after {
+  content:''; position:absolute; inset:0;
+  background: linear-gradient(to right, var(--bg) 0%, transparent 50%),
+              linear-gradient(to top, var(--bg) 0%, transparent 40%);
+}
+.hero-tag {
+  font-family:'Space Mono',monospace; font-size:.58rem;
+  letter-spacing:.3em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:2rem;
+  display:flex; align-items:center; gap:1rem;
+  opacity:0; animation:fadeUp .9s ease .3s forwards;
+}
+.hero-tag::before { content:''; display:block; width:40px; height:1px; background:var(--gold); }
+.hero-year {
+  font-family:'Space Mono',monospace; font-size:.65rem;
+  letter-spacing:.25em; color:var(--cream); opacity:.5;
+  margin-bottom:1.5rem;
+  opacity:0; animation:fadeUp .9s ease .5s forwards;
+}
+h1 {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(4rem,9vw,9rem);
+  line-height:.88; letter-spacing:.02em;
+  opacity:0; animation:fadeUp .9s ease .6s forwards;
+}
+h1 em {
+  display:block; font-family:'Cormorant Garamond',serif;
+  font-style:italic; font-size:.38em; font-weight:300;
+  color:var(--cream); letter-spacing:.06em; line-height:1.4;
+  margin-top:.4rem;
+}
+.hero-tagline {
+  margin-top:2.5rem; font-size:1.25rem; font-weight:300;
+  font-style:italic; color:var(--cream); line-height:1.8;
+  max-width:480px;
+  opacity:0; animation:fadeUp .9s ease .9s forwards;
+}
+.hero-meta {
+  margin-top:3rem; display:flex; gap:3rem;
+  opacity:0; animation:fadeUp .9s ease 1.1s forwards;
+}
+.hero-meta-item { display:flex; flex-direction:column; gap:.4rem; }
+.hero-meta-label {
+  font-family:'Space Mono',monospace; font-size:.5rem;
+  letter-spacing:.2em; text-transform:uppercase;
+  color:var(--cream); opacity:.4;
+}
+.hero-meta-value {
+  font-family:'Bebas Neue',sans-serif; font-size:1.3rem;
+  letter-spacing:.05em; color:var(--gold);
+}
+.hero-scroll {
+  position:absolute; right:4rem; bottom:4rem;
+  writing-mode:vertical-rl; font-family:'Space Mono',monospace;
+  font-size:.5rem; letter-spacing:.2em; color:var(--cream);
+  opacity:.4; display:flex; align-items:center; gap:1rem;
+  animation:fadeIn 1s ease 1.8s both; z-index:3;
+}
+.hero-scroll::after {
+  content:''; display:block; width:1px; height:50px;
+  background:linear-gradient(to bottom,var(--cream),transparent); opacity:.5;
+}
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeIn { from{opacity:0} to{opacity:.4} }
+
+/* ── SECTIONS ── */
+.section { padding:8rem 4rem; border-top:1px solid var(--line); }
+.section-label {
+  font-family:'Space Mono',monospace; font-size:.58rem;
+  letter-spacing:.3em; text-transform:uppercase; color:var(--gold);
+  margin-bottom:4rem; display:flex; align-items:center; gap:1.5rem;
+}
+.section-label::after { content:''; flex:1; height:1px; background:var(--line); max-width:80px; }
+
+/* ── INTRO ── */
+#intro { background:var(--bg2); }
+.intro-grid { display:grid; grid-template-columns:1fr 2fr; gap:8rem; align-items:start; }
+.intro-sidebar {}
+.intro-counter {
+  font-family:'Bebas Neue',sans-serif; font-size:8rem;
+  line-height:1; color:var(--gold); opacity:.12;
+  margin-bottom:-2rem;
+}
+.intro-kicker {
+  font-family:'Bebas Neue',sans-serif; font-size:2.5rem;
+  line-height:1; margin-bottom:1.5rem;
+}
+.intro-body { font-size:1.2rem; line-height:2; color:var(--cream); font-weight:300; }
+.intro-body p { margin-bottom:1.8rem; }
+.intro-body strong { color:var(--white); font-weight:400; }
+.quote-block {
+  border-left:2px solid var(--gold); padding:1.5rem 2.5rem;
+  margin:3rem 0; background:var(--gold3);
+}
+.quote-block p {
+  font-size:1.4rem; font-style:italic; line-height:1.7;
+  color:var(--white); margin-bottom:.8rem;
+}
+.quote-block cite {
+  font-family:'Space Mono',monospace; font-size:.55rem;
+  letter-spacing:.15em; text-transform:uppercase;
+  color:var(--gold); font-style:normal;
+}
+
+/* ── STORIA ── */
+#storia { background:var(--bg); }
+.storia-grid { display:grid; grid-template-columns:1fr 1fr; gap:6rem; }
+.storia-text h2 {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.5rem,4vw,4.5rem); line-height:1;
+  margin-bottom:2.5rem;
+}
+.storia-text p { font-size:1.15rem; line-height:1.95; color:var(--cream); font-weight:300; margin-bottom:1.5rem; }
+.timeline { display:flex; flex-direction:column; gap:0; }
+.timeline-item { display:grid; grid-template-columns:80px 1fr; gap:2rem; padding:2rem 0; border-bottom:1px solid var(--line); }
+.timeline-item:last-child { border-bottom:none; }
+.timeline-era {
+  font-family:'Bebas Neue',sans-serif; font-size:1.1rem;
+  color:var(--gold); letter-spacing:.05em; line-height:1.2;
+  padding-top:.2rem;
+}
+.timeline-content h4 {
+  font-family:'Bebas Neue',sans-serif; font-size:1.2rem;
+  letter-spacing:.05em; margin-bottom:.6rem; color:var(--white);
+}
+.timeline-content p { font-size:1rem; line-height:1.8; color:var(--cream); font-weight:300; }
+
+/* ── ANALISI ── */
+#analisi { background:var(--bg2); }
+.analisi-intro { max-width:700px; margin-bottom:5rem; }
+.analisi-intro h2 {
+  font-family:'Bebas Neue',sans-serif; font-size:clamp(2.5rem,4vw,4.5rem);
+  line-height:1; margin-bottom:2rem;
+}
+.analisi-intro p { font-size:1.2rem; line-height:1.9; color:var(--cream); font-weight:300; }
+.pillars { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-bottom:5rem; }
+.pillar {
+  background:var(--bg); border:1px solid var(--line);
+  padding:3rem 2.5rem; position:relative; overflow:hidden;
+  transition:border-color .3s;
+}
+.pillar:hover { border-color:var(--gold2); }
+.pillar::before {
+  content:''; position:absolute; top:0; left:0; right:0;
+  height:2px; background:linear-gradient(to right,transparent,var(--gold),transparent);
+  transform:scaleX(0); transition:transform .4s;
+}
+.pillar:hover::before { transform:scaleX(1); }
+.pillar-num {
+  font-family:'Bebas Neue',sans-serif; font-size:4rem;
+  color:var(--gold); opacity:.15; line-height:1; margin-bottom:.5rem;
+}
+.pillar-title {
+  font-family:'Bebas Neue',sans-serif; font-size:1.4rem;
+  letter-spacing:.06em; margin-bottom:1rem; color:var(--white);
+}
+.pillar p { font-size:1rem; line-height:1.85; color:var(--cream); font-weight:300; }
+
+/* ── TRACKLIST ── */
+#tracklist { background:var(--bg); }
+.track-intro { max-width:600px; margin-bottom:5rem; }
+.track-intro h2 {
+  font-family:'Bebas Neue',sans-serif; font-size:clamp(2.5rem,4vw,4.5rem);
+  line-height:1; margin-bottom:1.5rem;
+}
+.track-intro p { font-size:1.1rem; line-height:1.9; color:var(--cream); font-weight:300; }
+.tracks-full { display:flex; flex-direction:column; gap:0; }
+.track-item {
+  display:grid; grid-template-columns:60px 1fr auto;
+  gap:2rem; align-items:start;
+  padding:2rem 0; border-bottom:1px solid var(--line);
+  transition:background .2s; cursor:default;
+}
+.track-item:first-child { border-top:1px solid var(--line); }
+.track-item.featured { background:var(--gold3); border-color:var(--line2); padding:2.5rem 1.5rem; }
+.track-item:hover { background:var(--bg2); }
+.track-item.featured:hover { background:rgba(184,150,62,.12); }
+.t-num {
+  font-family:'Space Mono',monospace; font-size:.55rem;
+  color:var(--gold2); letter-spacing:.1em; padding-top:.3rem;
+}
+.t-content { display:flex; flex-direction:column; gap:.6rem; }
+.t-name {
+  font-family:'Bebas Neue',sans-serif; font-size:1.25rem;
+  letter-spacing:.05em; color:var(--white);
+}
+.track-item.featured .t-name { color:var(--gold); font-size:1.4rem; }
+.t-desc { font-size:.95rem; line-height:1.75; color:var(--cream); font-weight:300; max-width:600px; }
+.t-dur {
+  font-family:'Space Mono',monospace; font-size:.55rem;
+  color:var(--cream); opacity:.35; padding-top:.3rem; white-space:nowrap;
+}
+.featured-badge {
+  display:inline-block; font-family:'Space Mono',monospace;
+  font-size:.45rem; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--gold); border:1px solid var(--gold2);
+  padding:.2rem .6rem; margin-bottom:.4rem;
+}
+
+/* ── COVER ── */
+#cover-analysis { background:var(--bg2); }
+.cover-grid { display:grid; grid-template-columns:1fr 1fr; gap:8rem; align-items:center; }
+.cover-img-wrap { position:relative; }
+.cover-img-wrap img {
+  width:100%; display:block;
+  border:1px solid var(--line2);
+  filter:brightness(.9);
+}
+.cover-annotation {
+  position:absolute; font-family:'Space Mono',monospace;
+  font-size:.5rem; letter-spacing:.15em; text-transform:uppercase;
+  color:var(--gold); display:flex; align-items:center; gap:.8rem;
+}
+.cover-annotation::before { content:''; display:block; width:30px; height:1px; background:var(--gold); }
+.ann-1 { top:12%; left:-140px; }
+.ann-2 { top:50%; left:-130px; }
+.ann-3 { bottom:22%; left:-155px; }
+.cover-text h2 {
+  font-family:'Bebas Neue',sans-serif; font-size:clamp(2.5rem,4vw,4.5rem);
+  line-height:1; margin-bottom:2rem;
+}
+.cover-text p { font-size:1.1rem; line-height:1.95; color:var(--cream); font-weight:300; margin-bottom:1.5rem; }
+.cover-layers { display:flex; flex-direction:column; gap:2px; margin-top:3rem; }
+.cover-layer {
+  display:grid; grid-template-columns:auto 1fr;
+  gap:2rem; align-items:start;
+  padding:1.8rem 2rem; background:var(--bg); border:1px solid var(--line);
+  transition:border-color .3s;
+}
+.cover-layer:hover { border-color:var(--gold2); }
+.layer-icon { font-family:'Bebas Neue',sans-serif; font-size:1.8rem; color:var(--gold); opacity:.7; }
+.layer-title { font-family:'Bebas Neue',sans-serif; font-size:1.1rem; letter-spacing:.06em; margin-bottom:.4rem; }
+.layer-desc { font-size:.95rem; line-height:1.75; color:var(--cream); font-weight:300; }
+
+/* ── OMINO ── */
+#omino { background:var(--bg); text-align:center; padding:8rem 4rem; position:relative; overflow:hidden; }
+#omino::before {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse 60% 60% at 50% 50%, rgba(184,150,62,.04), transparent);
+}
+.omino-svg { margin:0 auto 3rem; display:block; opacity:.85; }
+.omino-title {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(3rem,6vw,7rem); line-height:1; margin-bottom:2rem;
+}
+.omino-text {
+  font-size:1.25rem; font-style:italic; font-weight:300;
+  color:var(--cream); line-height:1.9; max-width:600px; margin:0 auto 3rem;
+}
+.omino-quote {
+  font-family:'Bebas Neue',sans-serif; font-size:1.8rem;
+  color:var(--gold); letter-spacing:.05em; max-width:700px; margin:0 auto;
+  line-height:1.3;
+}
+
+/* ── RIFERIMENTI ── */
+#riferimenti { background:var(--bg2); }
+.rif-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; }
+.rif-card {
+  background:var(--bg); border:1px solid var(--line);
+  padding:2.5rem; transition:border-color .3s;
+}
+.rif-card:hover { border-color:var(--gold2); }
+.rif-composer {
+  font-family:'Space Mono',monospace; font-size:.52rem;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--gold);
+  margin-bottom:.8rem;
+}
+.rif-work {
+  font-family:'Bebas Neue',sans-serif; font-size:1.3rem;
+  letter-spacing:.04em; margin-bottom:1rem; line-height:1.2;
+}
+.rif-desc { font-size:.95rem; line-height:1.8; color:var(--cream); font-weight:300; }
+
+/* ── LISTEN CTA ── */
+#listen-cta { border-top:1px solid var(--line); padding:8rem 4rem; text-align:center; position:relative; overflow:hidden; }
+#listen-cta::before {
+  content:'ASCOLTA'; position:absolute; top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  font-family:'Bebas Neue',sans-serif; font-size:22vw;
+  color:rgba(255,255,255,.015); white-space:nowrap; pointer-events:none;
+}
+.cta-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(3rem,6vw,7rem); line-height:1; margin-bottom:1.5rem; position:relative; }
+.cta-sub { font-size:1.1rem; font-style:italic; color:var(--cream); font-weight:300; margin-bottom:3.5rem; position:relative; }
+.cta-buttons { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; position:relative; }
+.cta-btn {
+  display:inline-flex; align-items:center; gap:.8rem;
+  padding:1rem 2.5rem; border:1px solid var(--line2);
+  color:var(--cream); font-family:'Space Mono',monospace;
+  font-size:.6rem; letter-spacing:.2em; text-transform:uppercase;
+  text-decoration:none; transition:all .3s; cursor:none;
+}
+.cta-btn:hover { border-color:var(--gold); color:var(--gold); background:var(--gold3); }
+.cta-btn.primary { border-color:var(--gold); color:var(--gold); background:var(--gold3); }
+.cta-btn.primary:hover { background:rgba(184,150,62,.18); }
+
+/* ── FOOTER ── */
+footer {
+  border-top:1px solid var(--line); padding:3rem 4rem;
+  display:flex; justify-content:space-between; align-items:center;
+  background:#030304;
+}
+.footer-logo { font-family:'Bebas Neue',sans-serif; font-size:1.1rem; letter-spacing:.2em; color:var(--cream); opacity:.4; }
+.footer-copy { font-family:'Space Mono',monospace; font-size:.52rem; color:var(--cream); opacity:.25; letter-spacing:.1em; }
+.footer-nav { display:flex; gap:2rem; }
+.footer-nav a {
+  font-family:'Space Mono',monospace; font-size:.52rem;
+  letter-spacing:.15em; text-transform:uppercase;
+  color:var(--cream); opacity:.4; text-decoration:none;
+  transition:opacity .2s; cursor:none;
+}
+.footer-nav a:hover { opacity:.9; }
+
+/* ── REVEAL ── */
+.reveal { opacity:0; transform:translateY(36px); transition:opacity .8s ease,transform .8s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav { padding:1.5rem 2rem; }
+  #hero { grid-template-columns:1fr; }
+  .hero-left { padding:10rem 2rem 5rem; }
+  .hero-right { display:none; }
+  .section, #intro, #storia, #analisi, #tracklist, #cover-analysis, #omino, #riferimenti, #listen-cta { padding:5rem 2rem; }
+  .intro-grid, .storia-grid, .cover-grid { grid-template-columns:1fr; gap:3rem; }
+  .pillars, .rif-grid { grid-template-columns:1fr; }
+  .track-item { grid-template-columns:40px 1fr auto; }
+  .cover-annotation { display:none; }
+  footer { flex-direction:column; gap:1rem; text-align:center; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">G<span>.</span>DI MAURO</a>
+  <a href="index.html#discografia" class="nav-back">← Discografia</a>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════ HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <p class="hero-tag">Primo Album · Modern Classical</p>
+    <p class="hero-year">2015 · 24 BRANI · 1H 10MIN</p>
+    <h1>Adagio<em>Espressivo</em></h1>
+    <p class="hero-tagline">
+      Un invito al silenzio consapevole. Quando la musica smette di scorrere e comincia a scavare.
+    </p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Anno</span>
+        <span class="hero-meta-value">2015</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Formato</span>
+        <span class="hero-meta-value">Album</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Brani</span>
+        <span class="hero-meta-value">24</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Genere</span>
+        <span class="hero-meta-value">Modern Classical</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img
+      src="https://gaetanodimauromusic.altervista.org/wp-content/uploads/2016/11/Cover-Adagio-Espressivo-960x960.jpg"
+      alt="Adagio Espressivo — Gaetano Di Mauro"
+      class="hero-cover"
+    >
+  </div>
+  <div class="hero-scroll">Scorri</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ INTRO -->
+<section id="intro" class="section">
+  <div class="section-label reveal">Il Disco</div>
+  <div class="intro-grid">
+    <div class="intro-sidebar reveal">
+      <div class="intro-counter">01</div>
+      <div class="intro-kicker">Un'opera<br>prima<br>senza<br>compromessi</div>
+    </div>
+    <div class="intro-body reveal">
+      <p>
+        <strong>Adagio Espressivo</strong> è il debutto discografico di Gaetano Di Mauro, uscito il 7 aprile 2015. Non è soltanto un album: è una dichiarazione di poetica. In un panorama musicale dominato dalla velocità e dall'immediatezza, questo disco sceglie consapevolmente la direzione opposta — il tempo dilatato, il respiro lungo, la nota tenuta fino al suo naturale esaurimento.
+      </p>
+      <p>
+        Il titolo porta con sé tutto il programma estetico. <strong>Adagio</strong> — letteralmente "ad agio", con ampiezza — non è semplice lentezza, ma la qualità di chi ha tempo da dedicare a ogni singolo gesto musicale. <strong>Espressivo</strong> è il comando al cuore dell'esecutore: ogni nota deve dire qualcosa, nessun passaggio è decorativo.
+      </p>
+
+      <div class="quote-block">
+        <p>"Adagio Espressivo non è solo un titolo, è un invito. In questo disco la musica rallenta fino a diventare battito cardiaco."</p>
+        <cite>— Gaetano Di Mauro</cite>
+      </div>
+
+      <p>
+        Ventiquattro brani per oltre un'ora di musica strumentale: un'architettura vasta e coerente che esplora le infinite sfumature del <em>cantabile</em> — quella qualità melodica che imita la voce umana, la sua capacità di sostenere, modulare, commuovere. Dalle radici del Classicismo settecentesco al linguaggio del Modern Classical contemporaneo, Di Mauro costruisce un ponte tra epoche mantenendo intatta la sua voce originale di compositore catanese.
+      </p>
+      <p>
+        È il suono di quando le parole non bastano più. Quando resta solo il respiro dello strumento.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ STORIA -->
+<section id="storia" class="section">
+  <div class="section-label reveal">Inquadramento Storico</div>
+  <div class="storia-grid">
+    <div class="storia-text reveal">
+      <h2>Il peso di una dicitura</h2>
+      <p>
+        La formula <em>Adagio espressivo</em> ha una storia lunga tre secoli. Nasce come indicazione agogica negli spartiti del Classicismo viennese, si trasforma in manifesto emotivo con Beethoven, raggiunge la sua massima densità filosofica nel Romanticismo. Sceglierla come titolo nel 2015 è un gesto preciso, quasi un atto di fede verso una tradizione che non vuole essere musealizzata ma vissuta.
+      </p>
+      <p>
+        Di Mauro appartiene a quella generazione di compositori europei — da Max Richter a Ólafur Arnalds, da Nils Frahm a Ludovico Einaudi — che ha reimmaginato il vocabolario classico attraverso la sensibilità contemporanea. Ma il suo punto di partenza è più antico, più radicato nella tradizione colta dell'Europa continentale.
+      </p>
+    </div>
+    <div class="timeline reveal">
+      <div class="timeline-item">
+        <div class="timeline-era">1750<br>–<br>1820</div>
+        <div class="timeline-content">
+          <h4>Il Classicismo: L'Adagio come Eleganza</h4>
+          <p>Con Haydn e Mozart l'Adagio è nobile semplicità, equilibrio delle forme. Il <em>cantabile</em> imita la voce d'opera. Le frasi sono simmetriche, le armonie trasparenti. È il tempo del "bello ideale".</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-era">1800<br>–<br>1827</div>
+        <div class="timeline-content">
+          <h4>Beethoven: La Svolta Filosofica</h4>
+          <p>Beethoven trasforma l'Adagio in centro di gravità dell'opera intera. Non è più riposo tra due tempi veloci — è il momento in cui il compositore mette a nudo la propria interiorità più oscura e trascendentale. Nelle ultime sonate (Op. 109, 110, 111) l'Adagio diventa quasi preghiera.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-era">1820<br>–<br>1900</div>
+        <div class="timeline-content">
+          <h4>Romanticismo: Il Rubato e la Confessione</h4>
+          <p>Chopin, Schumann e Brahms caricano il tempo lento di tensioni armoniche, <em>rubato</em> e cromatismi. L'Adagio diventa confessione privata, diario in musica. Le dissonanze che risolvono lentamente mimano il sospiro umano.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-era">2000<br>–<br>oggi</div>
+        <div class="timeline-content">
+          <h4>Modern Classical: Il Silenzio come Strumento</h4>
+          <p>Il filone contemporaneo — Arvo Pärt, Max Richter, Ólafur Arnalds — recupera la lentezza come resistenza culturale alla frenesia digitale. Il silenzio non è assenza ma presenza. È in questo solco che Di Mauro pone il suo debutto.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ ANALISI -->
+<section id="analisi" class="section">
+  <div class="section-label reveal">Analisi Musicale</div>
+  <div class="analisi-intro reveal">
+    <h2>Tre pilastri, un linguaggio</h2>
+    <p>L'ascolto di <em>Adagio Espressivo</em> rivela un'architettura musicale fondata su tre elementi fondamentali, costantemente presenti e interrelati nel corso dell'album. Non si tratta di formule ripetute, ma di un vocabolario sonoro coerente che Di Mauro padroneggia con matura sicurezza fin dall'esordio.</p>
+  </div>
+  <div class="pillars reveal">
+    <div class="pillar">
+      <div class="pillar-num">I</div>
+      <div class="pillar-title">Il Respiro — L'Adagio</div>
+      <p>La base ritmica è rarefatta, intenzionalmente. Non c'è urgenza di arrivare alla conclusione della frase musicale. Questo permette all'ascoltatore di <em>abitare lo spazio tra le note</em> — di sentire il vuoto non come assenza ma come tensione sospesa. Le melodie si distendono con la naturalezza di un respiro profondo, creando un'esperienza quasi meditativa che raramente si incontra nel debutto di un compositore.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">II</div>
+      <div class="pillar-title">Il Pathos — L'Espressivo</div>
+      <p>Le dinamiche spaziano dal <em>pianissimo</em> al <em>mezzoforte</em> in un dialogo intimo e mai gridato. L'armonia non è mai scontata: ritardi e dissonanze risolvono lentamente, mimando il sospiro, l'esitazione, la commozione trattenuta. Piccole "fitte" armoniche — brevi note estranee alla tonalità — creano quel senso di struggimento tipico dei grandi Adagi romantici senza mai cadere nel sentimentalismo.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">III</div>
+      <div class="pillar-title">Il Colore — Il Timbro</div>
+      <p>La produzione porta lo strumento "vicino" all'orecchio di chi ascolta, annullando la distanza tra esecutore e ascoltatore. Il riverbero è usato con parsimonia — abbastanza da dare profondità, mai abbastanza da creare nebbia. Il risultato è un timbro caldo, diretto, quasi confidenziale. Come una conversazione a bassa voce in una stanza silenziosa.</p>
+    </div>
+  </div>
+
+  <div class="quote-block reveal">
+    <p>"L'Adagio è il tempo in cui la musica smette di scorrere e inizia a scavare."</p>
+    <cite>— Analisi su Adagio Espressivo</cite>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ TRACKLIST -->
+<section id="tracklist" class="section">
+  <div class="section-label reveal">Brani</div>
+  <div class="track-intro reveal">
+    <h2>Un viaggio in ventiquattro tappe</h2>
+    <p>Ogni brano di <em>Adagio Espressivo</em> è un ritratto: di un luogo, di uno stato d'animo, di un momento sospeso nel tempo. I titoli in inglese creano una distanza sottile tra l'emozione vissuta e quella descritta — come guardare i propri sentimenti da fuori, con la lucidità di chi li ha già elaborati.</p>
+  </div>
+  <div class="tracks-full">
+
+    <div class="track-item reveal">
+      <span class="t-num">01</span>
+      <div class="t-content">
+        <span class="t-name">Dancer and Slave</span>
+        <span class="t-desc">Il paradosso d'apertura: la danza è libertà, la schiavitù è costrizione. Ma un musicista è entrambe le cose — libero nel creare, vincolato dalla disciplina dello strumento. Un inizio carico di tensione trattenuta.</span>
+      </div>
+      <span class="t-dur">2:58</span>
+    </div>
+
+    <div class="track-item reveal">
+      <span class="t-num">02</span>
+      <div class="t-content">
+        <span class="t-name">Behind the Stage</span>
+        <span class="t-desc">Il retro del palcoscenico. L'uomo dietro l'artista, il silenzio e l'ansia prima che le luci si accendano. Il momento più vulnerabile — quello che il pubblico non vede mai.</span>
+      </div>
+      <span class="t-dur">3:04</span>
+    </div>
+
+    <div class="track-item reveal">
+      <span class="t-num">03</span>
+      <div class="t-content">
+        <span class="t-name">Next to You</span>
+        <span class="t-desc">Il centro affettivo del disco. Il tempo si fa dolce, le melodie si appoggiano l'una sull'altra con estrema delicatezza. L'espressività qui significa empatia: la vicinanza fisica o spirituale descritta attraverso il suono.</span>
+      </div>
+      <span class="t-dur">2:48</span>
+    </div>
+
+    <div class="track-item reveal">
+      <span class="t-num">04</span>
+      <div class="t-content">
+        <span class="t-name">Majestic</span>
+        <span class="t-desc">L'unico momento di grandezza nell'album. In un Adagio la maestosità non viene dalla velocità ma dalla profondità. Il brano che apre il disco verso l'universale — come guardare una cattedrale o un cielo stellato.</span>
+      </div>
+      <span class="t-dur">2:51</span>
+    </div>
+
+    <div class="track-item reveal">
+      <span class="t-num">05</span>
+      <div class="t-content">
+        <span class="t-name">Pianosa</span>
+        <span class="t-desc">Un gioco di parole tra lo strumento e l'isola, tra il piano e il paesaggio piatto. Solitudine e isolamento catartico: una struttura ciclica come le onde che si infrangono su una spiaggia deserta, dove la ripetizione diventa meditazione.</span>
+      </div>
+      <span class="t-dur">2:55</span>
+    </div>
+
+    <div class="track-item reveal">
+      <span class="t-num">06</span>
+      <div class="t-content">
+        <span class="t-name">In the Middle of Violet</span>
+        <span class="t-desc">Il viola è il colore della metamorfosi, tra il blu della malinconia e il rosso della passione. Il ponte emotivo dell'album: armonie complesse e misteriose, stati d'animo né del tutto tristi né del tutto felici.</span>
+      </div>
+      <span class="t-dur">3:01</span>
+    </div>
+
+    <div class="track-item reveal">
+      <span class="t-num">07</span>
+      <div class="t-content">
+        <span class="t-name">Sea</span>
+        <span class="t-desc">Il brano più fluido dell'album. La musica scorre come l'acqua senza un inizio o una fine netta. Il punto di massimo abbandono per l'ascoltatore. Ci si lascia portare.</span>
+      </div>
+      <span class="t-dur">2:44</span>
+    </div>
+
+    <div class="track-item reveal">
+      <span class="t-num">08</span>
+      <div class="t-content">
+        <span class="t-name">What Does It Mean?</span>
+        <span class="t-desc">Un brano interrogativo. Le frasi musicali non risolvono sulla tonica, lasciando l'ascoltatore in sospeso. La ricerca di senso che ognuno di noi compie nel silenzio della propria stanza.</span>
+      </div>
+      <span class="t-dur">2:52</span>
+    </div>
+
+    <div class="track-item reveal">
+      <span class="t-num">09</span>
+      <div class="t-content"><span class="t-name">On</span></div>
+      <span class="t-dur">2:48</span>
+    </div>
+
+    <div class="track-item reveal">
+      <span class="t-num">10</span>
+      <div class="t-content"><span class="t-name">More and Again</span></div>
+      <span class="t-dur">2:55</span>
+    </div>
+
+    <div class="track-item reveal">
+      <span class="t-num">11</span>
+      <div class="t-content">
+        <span class="t-name">Pantomima</span>
+        <span class="t-desc">Il gesto senza parole. La pantomima è espressione pura — il corpo che parla quando la voce tace. Nella musica di Di Mauro, lo strumento fa lo stesso.</span>
+      </div>
+      <span class="t-dur">2:51</span>
+    </div>
+
+    <div class="track-item reveal">
+      <span class="t-num">12</span>
+      <div class="t-content">
+        <span class="t-name">An Illusion of You</span>
+        <span class="t-desc">Assenza e ricordo. La musica diventa eterea, sfocata come i ricordi che sbiadiscono. Un eco che svanisce lentamente — il congedo più elegante.</span>
+      </div>
+      <span class="t-dur">2:58</span>
+    </div>
+
+    <div class="track-item reveal">
+      <span class="t-num">13</span>
+      <div class="t-content"><span class="t-name">Short Theme in G Major</span>
+        <span class="t-desc">Un frammento intenzionale, quasi uno schizzo nel taccuino di un pittore. Il Sol maggiore è la tonalità solare per eccellenza — qui usata con la brevità di un'intuizione.</span>
+      </div>
+      <span class="t-dur">2:41</span>
+    </div>
+
+    <div class="track-item reveal">
+      <span class="t-num">14</span>
+      <div class="t-content"><span class="t-name">Don't Be Gone Too Long</span>
+        <span class="t-desc">Una supplica gentile. Il timore della perdita espresso con la massima discrezione — senza mai alzare la voce.</span>
+      </div>
+      <span class="t-dur">2:52</span>
+    </div>
+
+    <div class="track-item featured reveal">
+      <span class="t-num">15</span>
+      <div class="t-content">
+        <span class="featured-badge">Brano chiave</span>
+        <span class="t-name">A Little Piece of Theatre</span>
+        <span class="t-desc">Il colpo di scena dell'album. Se il resto del disco è esplorazione dell'interiorità, questo brano è il momento in cui si apre il sipario. Qui la musica smette di essere solo suono e diventa azione: una piccola scena rubata alla vita, dove ogni tasto è un personaggio e ogni accordo è un cambio di scena. Con i suoi 7 minuti e 20 secondi è il brano più lungo del disco — lo spazio necessario a raccontare un dramma intero. Richiama le <em>Lieder senza parole</em> di Schumann, le piccole scene del Carnaval, la musica per cinema dove il pianoforte racconta senza dialoghi.</span>
+      </div>
+      <span class="t-dur">7:20</span>
+    </div>
+
+    <div class="track-item reveal">
+      <span class="t-num">16</span>
+      <div class="t-content"><span class="t-name">When the Rain Comes to Town</span>
+        <span class="t-desc">La pioggia che arriva in città — un'immagine cinematografica e intimista. Il cambio di luce che cambia anche l'umore.</span>
+      </div>
+      <span class="t-dur">2:55</span>
+    </div>
+
+    <div class="track-item reveal">
+      <span class="t-num">17</span>
+      <div class="t-content"><span class="t-name">Fanfarina</span></div>
+      <span class="t-dur">2:44</span>
+    </div>
+
+    <div class="track-item reveal">
+      <span class="t-num">18</span>
+      <div class="t-content"><span class="t-name">Glass</span>
+        <span class="t-desc">Il vetro: trasparenza e fragilità. Un timbro cristallino, note singole che risuonano nel silenzio come dita su un calice.</span>
+      </div>
+      <span class="t-dur">2:48</span>
+    </div>
+
+    <div class="track-item reveal">
+      <span class="t-num">19</span>
+      <div class="t-content"><span class="t-name">Piece of Love</span></div>
+      <span class="t-dur">2:51</span>
+    </div>
+
+    <div class="track-item reveal">
+      <span class="t-num">20</span>
+      <div class="t-content"><span class="t-name">Cinema 212</span>
+        <span class="t-desc">Un numero di sala cinematografica. La musica diventa colonna sonora di un film immaginario — ogni ascoltatore porta il proprio schermo.</span>
+      </div>
+      <span class="t-dur">2:55</span>
+    </div>
+
+    <div class="track-item reveal">
+      <span class="t-num">21</span>
+      <div class="t-content"><span class="t-name">You Was Air</span>
+        <span class="t-desc">Grammatica imperfetta, emozione precisa. Qualcosa — o qualcuno — che era aria: ovunque e invisibile. La sua assenza ora si sente in ogni respiro.</span>
+      </div>
+      <span class="t-dur">2:41</span>
+    </div>
+
+    <div class="track-item reveal">
+      <span class="t-num">22</span>
+      <div class="t-content"><span class="t-name">E.City</span></div>
+      <span class="t-dur">2:48</span>
+    </div>
+
+    <div class="track-item reveal">
+      <span class="t-num">23</span>
+      <div class="t-content">
+        <span class="t-name">Nebula</span>
+        <span class="t-desc">Una nube galattica di gas e stelle in formazione. Il penultimo brano proietta il disco verso le stesse stelle che appaiono sulla copertina — la musica si fa cosmica.</span>
+      </div>
+      <span class="t-dur">2:52</span>
+    </div>
+
+    <div class="track-item reveal">
+      <span class="t-num">24</span>
+      <div class="t-content">
+        <span class="t-name">Coda</span>
+        <span class="t-desc">La coda. Nel linguaggio musicale classico è la sezione finale che conclude un brano con definitività. Qui conclude un intero album — e un intero universo poetico. Non una fine, ma un'apertura verso il silenzio necessario.</span>
+      </div>
+      <span class="t-dur">2:44</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ COPERTINA -->
+<section id="cover-analysis" class="section">
+  <div class="section-label reveal">La Copertina</div>
+  <div class="cover-grid">
+    <div class="cover-img-wrap reveal">
+      <img
+        src="https://gaetanodimauromusic.altervista.org/wp-content/uploads/2016/11/Cover-Adagio-Espressivo-960x960.jpg"
+        alt="Copertina Adagio Espressivo"
+      >
+      <span class="cover-annotation ann-1">Il Cosmo</span>
+      <span class="cover-annotation ann-2">Il Teatro</span>
+      <span class="cover-annotation ann-3">L'Uomo</span>
+    </div>
+    <div class="cover-text reveal">
+      <h2>Il cosmo in un teatro</h2>
+      <p>
+        La copertina di <em>Adagio Espressivo</em> è essa stessa un'opera d'arte che fonde tre mondi in una sola immagine: l'architettura classica, l'infinito del cosmo e la semplicità dell'essere umano.
+      </p>
+      <p>
+        È una delle copertine più concettualmente dense della scena Modern Classical italiana. Ogni elemento è una scelta precisa, non decorativa.
+      </p>
+      <div class="cover-layers">
+        <div class="cover-layer">
+          <div class="layer-icon">🏛</div>
+          <div>
+            <div class="layer-title">Il Teatro — La Tradizione</div>
+            <div class="layer-desc">L'architettura classica con i palchi illuminati d'oro rappresenta le radici storiche del disco — il rigore, la forma, la tradizione colta. Ma il teatro è <em>scoperchiato</em>: le pareti ci sono, il soffitto no. La musica parte dalle radici classiche ma non si lascia imprigionare da esse.</div>
+          </div>
+        </div>
+        <div class="cover-layer">
+          <div class="layer-icon">✦</div>
+          <div>
+            <div class="layer-title">Il Cielo Stellato — L'Infinito</div>
+            <div class="layer-desc">Al posto del soffitto c'è una galassia. È il simbolo dell'Adagio stesso: un tempo che si espande fino a diventare eterno. Le stelle sono le note del disco — punti di luce nel silenzio profondo. Il contrasto dice all'ascoltatore che questa musica è un ponte tra la terra e l'universo.</div>
+          </div>
+        </div>
+        <div class="cover-layer">
+          <div class="layer-icon">◯</div>
+          <div>
+            <div class="layer-title">La Figura Stilizzata — L'Essenza</div>
+            <div class="layer-desc">Al centro del palco non c'è un pianista in frac: c'è un'icona minimalista, quasi un disegno infantile. È la scelta più potente. Rappresenta l'uomo spogliato di ogni maschera, l'emozione semplice e pura di fronte all'immensità. Siamo tutti figure stilizzate su un palcoscenico troppo grande per noi.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ OMINO -->
+<section id="omino">
+  <!-- Figura stilizzata SVG — l'omino della cover ricreato come simbolo -->
+  <svg class="omino-svg" width="60" height="90" viewBox="0 0 60 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="30" cy="14" r="12" stroke="#b8963e" stroke-width="1.5" fill="none" opacity=".7"/>
+    <line x1="30" y1="26" x2="30" y2="60" stroke="#b8963e" stroke-width="1.5" opacity=".7"/>
+    <line x1="8" y1="38" x2="52" y2="38" stroke="#b8963e" stroke-width="1.5" opacity=".7"/>
+    <line x1="30" y1="60" x2="10" y2="88" stroke="#b8963e" stroke-width="1.5" opacity=".7"/>
+    <line x1="30" y1="60" x2="50" y2="88" stroke="#b8963e" stroke-width="1.5" opacity=".7"/>
+  </svg>
+  <h2 class="omino-title reveal">Siamo tutti<br>figure stilizzate</h2>
+  <p class="omino-text reveal">
+    Su un palcoscenico troppo grande per noi. In questo disco, quella piccola figura bianca in copertina rappresenta la parte più vera di ognuno di noi — quella che non ha bisogno di costumi elaborati per esprimersi, ma solo di un po' di coraggio per stare sotto i riflettori del proprio destino.
+  </p>
+  <p class="omino-quote reveal">"Cosa succede quando un palcoscenico non ha più confini?"</p>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ RIFERIMENTI -->
+<section id="riferimenti" class="section">
+  <div class="section-label reveal">Riferimenti & Influenze</div>
+  <div style="max-width:600px;margin-bottom:4rem" class="reveal">
+    <p style="font-size:1.15rem;line-height:1.9;color:var(--cream);font-weight:300">Per contestualizzare pienamente <em>Adagio Espressivo</em>, ecco le opere che ne abitano lo spazio armonico — non come fonti dirette, ma come conversazioni silenziose che attraversano i secoli.</p>
+  </div>
+  <div class="rif-grid reveal">
+    <div class="rif-card">
+      <div class="rif-composer">Ludwig van Beethoven</div>
+      <div class="rif-work">Sonata Op. 109<br>in Mi maggiore</div>
+      <div class="rif-desc">L'Adagio molto espressivo del primo movimento è il punto di riferimento più diretto per capire come Beethoven trasformò il tempo lento in cuore filosofico dell'opera. La melodia si apre come un respiro trattenuto a lungo.</div>
+    </div>
+    <div class="rif-card">
+      <div class="rif-composer">Robert Schumann</div>
+      <div class="rif-work">Carnaval Op. 9<br>— scene brevi</div>
+      <div class="rif-desc">Come i <em>Pezzi caratteristici</em> di Schumann, i brani di Di Mauro sono ritratti brevi e intensi: personaggi, momenti, stati d'animo catturati in pochi minuti. Una vicinanza di spirito attraverso due secoli.</div>
+    </div>
+    <div class="rif-card">
+      <div class="rif-composer">Ólafur Arnalds</div>
+      <div class="rif-work">...And They Have<br>Escaped the Weight</div>
+      <div class="rif-desc">Il punto di contatto contemporaneo: la stessa cura per il silenzio, lo stesso uso del riverbero come quarta dimensione della musica, la stessa capacità di fare dell'intimità un'esperienza universale.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ CTA ASCOLTA -->
+<section id="listen-cta">
+  <h2 class="cta-title reveal">Ascolta ora</h2>
+  <p class="cta-sub reveal">Disponibile su tutte le piattaforme digitali</p>
+  <div class="cta-buttons reveal">
+    <a href="https://open.spotify.com/album/0TcIESzd1sQFExxsqG9cL5" target="_blank" class="cta-btn primary">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.622.622 0 01-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.622.622 0 01-.277-1.215c3.809-.87 7.077-.495 9.713 1.115.294.18.387.562.206.857zm1.223-2.72a.78.78 0 01-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.78.78 0 01-.973-.519.781.781 0 01.52-.972c3.632-1.102 8.147-.568 11.234 1.328a.78.78 0 01.256 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.937.937 0 11-.543-1.793c3.563-1.081 9.484-.872 13.22 1.37a.937.937 0 01-1.06 1.582z"/></svg>
+      Spotify
+    </a>
+    <a href="https://music.apple.com/it/album/adagio-espressivo/976920860" target="_blank" class="cta-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      Apple Music
+    </a>
+    <a href="https://www.amazon.com/Fanfarina/dp/B00UPRBS68" target="_blank" class="cta-btn">Amazon Music</a>
+    <a href="index.html#discografia" class="cta-btn">← Torna alla discografia</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Gaetano Di Mauro</div>
+  <nav class="footer-nav">
+    <a href="index.html">Home</a>
+    <a href="index.html#discografia">Discografia</a>
+    <a href="index.html#contatti">Contatti</a>
+  </nav>
+  <div class="footer-copy">© 2026 — Tutti i diritti riservati</div>
+</footer>
+
+<script>
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx=0, my=0, rx=0, ry=0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.left = mx-4+'px'; cursor.style.top = my-4+'px';
+});
+(function animRing(){
+  rx += (mx-rx)*.1; ry += (my-ry)*.1;
+  ring.style.left = rx-15+'px'; ring.style.top = ry-15+'px';
+  requestAnimationFrame(animRing);
+})();
+document.addEventListener('mouseover', e => {
+  if(e.target.closest('a,button')) { cursor.style.transform='scale(3)'; ring.style.width='48px'; ring.style.height='48px'; }
+});
+document.addEventListener('mouseout', e => {
+  if(e.target.closest('a,button')) { cursor.style.transform='scale(1)'; ring.style.width='30px'; ring.style.height='30px'; }
+});
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e,i) => {
+    if(e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i*60);
+  });
+}, { threshold:0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
