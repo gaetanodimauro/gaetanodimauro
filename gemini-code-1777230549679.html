@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gaetano Di Mauro — Musicista & Compositore</title>
+<script src="lang.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Bebas+Neue&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+:root { --bg: #050507; --white: #f0ede8; --gold: #b8963e; }
+body { background: var(--bg); color: var(--white); font-family: 'Cormorant Garamond', serif; margin: 0; }
+nav { padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); position: sticky; top:0; background: rgba(5,5,7,0.9); backdrop-filter: blur(10px); z-index:100; }
+.logo { font-family: 'Bebas Neue'; font-size: 1.5rem; letter-spacing: 2px; text-decoration: none; color: var(--white); }
+.nav-right { display: flex; gap: 2rem; align-items: center; }
+.nav-links { display: flex; gap: 1.5rem; }
+.nav-links a { text-decoration: none; color: var(--white); font-family: 'Space Mono'; font-size: 0.7rem; text-transform: uppercase; }
+.lang-switch { display: flex; gap: 10px; border-left: 1px solid rgba(255,255,255,0.1); padding-left: 1.5rem; }
+.lang-btn { background: none; border: none; color: var(--white); font-family: 'Space Mono'; font-size: 0.7rem; cursor: pointer; opacity: 0.4; }
+.lang-btn.active { opacity: 1; color: var(--gold); }
+</style>
+</head>
+<body>
+<nav>
+    <a href="index.html" class="logo">GAETANO DI MAURO</a>
+    <div class="nav-right">
+        <div class="nav-links">
+            <a href="#biografia" data-it="Biografia" data-en="Bio">Biografia</a>
+            <a href="#discografia" data-it="Discografia" data-en="Discography">Discografia</a>
+            <a href="blog.html" data-it="Diario" data-en="Journal" style="color:var(--gold);">Diario</a>
+            <a href="#contatti" data-it="Contatti" data-en="Contact">Contatti</a>
+        </div>
+        <div class="lang-switch">
+            <button class="lang-btn" data-lang="it" onclick="LangSystem.set('it')">ITA</button>
+            <button class="lang-btn" data-lang="en" onclick="LangSystem.set('en')">EN</button>
+        </div>
+    </div>
+</nav>
+
+<div style="text-align:center; padding: 150px 20px;">
+    <h1 style="font-family:'Bebas Neue'; font-size: 5rem; letter-spacing: 5px;" data-it="GAETANO DI MAURO" data-en="GAETANO DI MAURO">GAETANO DI MAURO</h1>
+    <p style="font-size: 1.5rem; font-style: italic; opacity: 0.7;" data-it="Film non per gli occhi, ma per le orecchie." data-en="Films not for the eyes, but for the ears.">Film non per gli occhi, ma per le orecchie.</p>
+</div>
+
+<section id="biografia" style="max-width: 800px; margin: 0 auto; padding: 50px 20px; line-height: 1.8; font-size: 1.2rem; text-align: center;">
+    <h2 style="font-family:'Bebas Neue'; color:var(--gold);" data-it="BIOGRAFIA" data-en="BIO">BIOGRAFIA</h2>
+    <p data-it="Musicista e compositore catanese..." data-en="Musician and composer from Catania...">Musicista e compositore catanese...</p>
+</section>
+
+</body>
+</html>
