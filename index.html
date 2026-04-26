@@ -794,6 +794,47 @@ const _initLang = getLang();
 buildDisco(_initLang);
 setTimeout(() => setLang(_initLang), 80);
 renderDiarioPreview(_initLang);
+  const MIXSETS = [
+  {
+    title: "Ambient Drift Session",
+    year: "2025",
+    genre: "Ambient / Experimental",
+    description: "Percorso atmosferico tra droni, texture elettroniche e riverberi profondi.",
+    url: "https://www.mixcloud.com/gaetano-di-mauro/ambient-drift-session/"
+  },
+  {
+    title: "Night Electronic Flow",
+    year: "2025",
+    genre: "Electronic / Downtempo",
+    description: "Selezione ritmica notturna con groove lenti e costruzione cinematica.",
+    url: "https://www.mixcloud.com/gaetano-di-mauro/night-electronic-flow/"
+  },
+  {
+    title: "Studio Improvisations",
+    year: "2024",
+    genre: "Experimental / Live",
+    description: "Sessioni improvvisate in studio, tra chitarra e synth modulari.",
+    url: "https://www.mixcloud.com/gaetano-di-mauro/studio-improvisations/"
+  }
+];
+
+const container = document.querySelector(".sets-grid");
+
+if (container) {
+  container.innerHTML = MIXSETS.map(mix => `
+    <div class="set-card reveal">
+      <iframe class="set-embed" src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=${encodeURIComponent('/gaetano-di-mauro/' + mix.title.toLowerCase().replaceAll(' ','-'))}" frameborder="0"></iframe>
+      <div class="set-meta">
+        <div class="set-number">${mix.year}</div>
+        <div class="set-title">${mix.title}</div>
+        <div class="set-genre">${mix.genre}</div>
+        <div style="margin-top:1rem;font-size:.7rem;color:var(--cream);opacity:.7;line-height:1.5">
+          ${mix.description}
+        </div>
+      </div>
+    </div>
+  `).join("");
+}
 </script>
 </body>
 </html>
