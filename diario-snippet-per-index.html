@@ -1,0 +1,103 @@
+<!--
+══════════════════════════════════════════════════════════════
+  DIARIO SONORO — blocco da incollare in index.html
+  Posizione: dopo </section> di #the-amp, prima di #instagram
+══════════════════════════════════════════════════════════════
+-->
+
+<!-- AGGIUNGI QUESTA RIGA al CSS di index.html (dentro <style>) -->
+<!--
+#diario-preview .post-preview-card{background:var(--bg);border:1px solid var(--line);padding:2rem 2.5rem;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:.8rem;transition:border-color .3s,transform .3s;cursor:none;position:relative;overflow:hidden}
+#diario-preview .post-preview-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--accent),transparent);transform:scaleX(0);transition:transform .4s}
+#diario-preview .post-preview-card:hover::before{transform:scaleX(1)}
+#diario-preview .post-preview-card:hover{border-color:var(--accent2);transform:translateY(-3px)}
+#diario-preview .ppc-tag{font-family:'Space Mono',monospace;font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+#diario-preview .ppc-title{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;line-height:1;letter-spacing:.03em}
+#diario-preview .ppc-date{font-family:'Space Mono',monospace;font-size:.48rem;color:var(--cream);opacity:.35;letter-spacing:.1em}
+#diario-preview .ppc-excerpt{font-size:1rem;line-height:1.7;color:var(--cream);font-weight:300;font-style:italic;opacity:.8}
+-->
+
+<!-- INCOLLA QUESTO BLOCCO HTML dopo the-amp section -->
+<section id="diario-preview" style="border-top:1px solid var(--line);background:var(--bg2)">
+  <div style="padding:6rem 4rem;max-width:1400px;margin:0 auto">
+
+    <!-- Header sezione -->
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4rem">
+      <div>
+        <div class="section-label reveal" data-it="Diario Sonoro" data-en="Sound Journal">Diario Sonoro</div>
+        <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,5vw,5rem);line-height:1" data-it="Note dal vivo" data-en="Live notes">Note dal vivo</h2>
+      </div>
+      <a href="blog.html" style="font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);text-decoration:none;border:1px solid var(--accent2);padding:.7rem 1.8rem;transition:all .3s;cursor:none;flex-shrink:0;align-self:center"
+         onmouseover="this.style.borderColor='var(--accent)';this.style.background='rgba(184,150,62,.08)'"
+         onmouseout="this.style.borderColor='var(--accent2)';this.style.background='transparent'"
+         data-it="Tutti gli aggiornamenti →" data-en="All updates →">Tutti gli aggiornamenti →</a>
+    </div>
+
+    <!-- Preview ultimi 3 post — compilata da JS inline -->
+    <div id="diario-preview-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px"></div>
+
+  </div>
+</section>
+
+<!-- AGGIUNGI ANCHE QUESTO SCRIPT subito prima del tag </script> finale di index.html -->
+<!--
+  Incolla questo blocco dentro il <script> esistente di index.html,
+  prima dell'ultima riga buildDisco(...)
+  
+  Richiede che l'array POSTS di blog.html sia duplicato qui con i primi 3 post,
+  OPPURE usa i dati inline qui sotto (aggiornali manualmente quando scrivi nuovi post):
+-->
+<script id="diario-preview-script">
+(function(){
+  // ── Preview post per la home — aggiorna quando aggiungi nuovi post ──
+  const HOME_POSTS = [
+    {
+      date: "Aprile 2026", tag: "Aggiornamento",
+      it: { title: "Il sito è online", excerpt: "Finalmente uno spazio tutto mio. Un posto dove raccogliere tutto — la musica, i pensieri, i lavori in corso." },
+      en: { title: "The site is live", excerpt: "Finally a space of my own. A place to gather everything — the music, the thoughts, the works in progress." },
+      link: "blog.html"
+    },
+    {
+      date: "Marzo 2026", tag: "Nuovo singolo",
+      it: { title: "Rinse — come è nato", excerpt: "Un brano che non era previsto. Nasce in una notte, quasi per caso, da un loop di chitarra." },
+      en: { title: "Rinse — how it was born", excerpt: "A track that wasn't planned. Born in one night, almost by accident, from a guitar loop." },
+      link: "blog.html"
+    },
+    {
+      date: "Novembre 2024", tag: "Album",
+      it: { title: "Ausosa: un anno dopo", excerpt: "Un anno fa usciva Ausosa. Guardare indietro a un disco è sempre strano — come leggere il proprio diario." },
+      en: { title: "Ausosa: one year later", excerpt: "A year ago Ausosa came out. Looking back at a record is always strange — like reading your own diary." },
+      link: "ausosa.html"
+    }
+  ];
+
+  function renderDiarioPreview(lang) {
+    const grid = document.getElementById('diario-preview-grid');
+    if(!grid) return;
+    grid.innerHTML = HOME_POSTS.map(p => {
+      const txt = p[lang] || p.it;
+      return `<a href="${p.link}" class="post-preview-card reveal" style="background:var(--bg);border:1px solid var(--line);padding:2rem 2.5rem;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:.8rem;transition:border-color .3s,transform .3s;cursor:none;position:relative;overflow:hidden"
+        onmouseover="this.style.borderColor='var(--accent2)';this.style.transform='translateY(-3px)'"
+        onmouseout="this.style.borderColor='var(--line)';this.style.transform='none'">
+        <div style="font-family:'Space Mono',monospace;font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)">${p.tag}</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;line-height:1;letter-spacing:.03em">${txt.title}</div>
+        <div style="font-family:'Space Mono',monospace;font-size:.48rem;color:var(--cream);opacity:.35;letter-spacing:.1em">${p.date}</div>
+        <p style="font-size:1rem;line-height:1.7;color:var(--cream);font-weight:300;font-style:italic;flex:1;margin:0">${txt.excerpt}</p>
+        <div style="font-family:'Space Mono',monospace;font-size:.52rem;color:var(--accent);letter-spacing:.15em;margin-top:.3rem">${lang==='it'?'Leggi →':'Read →'}</div>
+      </a>`;
+    }).join('');
+    document.querySelectorAll('.reveal:not(.visible)').forEach(el => obs.observe(el));
+  }
+
+  // Init e aggancio al cambio lingua
+  const origSetLang = window.setLang;
+  window.setLang = function(lang){
+    if(origSetLang) origSetLang(lang);
+    renderDiarioPreview(lang);
+  };
+
+  window.addEventListener('DOMContentLoaded', function(){
+    renderDiarioPreview(getLang ? getLang() : 'it');
+  });
+})();
+</script>
