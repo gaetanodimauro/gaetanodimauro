@@ -27,4 +27,295 @@
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: var(--font-main); background: var(--bg); color: var(--text); line-height: 1.6; }
-    a { color:
+    a { color: var(--hero-accent); text-decoration: none; transition: 0.2s; }
+    a:hover { color: var(--hero-accent-hover); }
+    img { max-width: 100%; height: auto; display: block; }
+    section { padding: 4rem 1.5rem; max-width: 1200px; margin: 0 auto; }
+    h2 { font-size: 2rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--hero-btn-border); padding-bottom: 0.5rem; display: inline-block; }
+    
+    /* Nav */
+    header { position: sticky; top: 0; background: rgba(10,10,10,0.95); backdrop-filter: blur(10px); z-index: 100; padding: 1rem; border-bottom: 1px solid var(--hero-btn-border); }
+    nav { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; }
+    .logo { font-weight: 700; font-size: 1.2rem; letter-spacing: 0.1em; }
+    .nav-links { display: flex; flex-wrap: wrap; gap: 1rem; list-style: none; }
+    .nav-links a { color: var(--text); font-size: 0.9rem; opacity: 0.8; }
+    .nav-links a:hover { opacity: 1; color: var(--hero-accent); }
+    .lang-switch { font-size: 0.85rem; opacity: 0.7; cursor: pointer; }
+    
+    /* Hero */
+    .hero-section { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--hero-bg); color: var(--hero-text); padding: 2rem 1rem; text-align: center; position: relative; }
+    .hero-content { max-width: 820px; width: 100%; }
+    .hero-subtitle { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.25em; opacity: 0.7; margin-bottom: 0.5rem; }
+    .hero-title { font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 700; margin: 0 0 1rem; line-height: 1.1; }
+    .hero-desc { font-size: 1.1rem; line-height: 1.6; opacity: 0.9; max-width: 640px; margin: 0 auto 2rem; }
+    .hero-player { background: rgba(255,255,255,0.04); border-radius: 16px; padding: 1rem; margin: 0 auto 2rem; max-width: 520px; border: 1px solid var(--hero-btn-border); backdrop-filter: blur(8px); }
+    .player-note { font-size: 0.85rem; opacity: 0.7; margin-top: 0.5rem; }
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-bottom: 3.5rem; }
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.9rem 1.6rem; border-radius: 50px; font-weight: 600; text-decoration: none; transition: all 0.25s ease; font-size: 0.95rem; color: var(--text); }
+    .btn-primary { background: var(--hero-accent); color: #000; }
+    .btn-primary:hover { background: var(--hero-accent-hover); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(74,222,128,0.25); }
+    .btn-secondary, .btn-tertiary { background: var(--hero-btn-bg); border: 1px solid var(--hero-btn-border); }
+    .btn-secondary:hover, .btn-tertiary:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
+    .scroll-indicator { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.4rem; opacity: 0.6; cursor: pointer; animation: bounce 2.5s infinite; }
+    .arrow-down { width: 20px; height: 20px; }
+    @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); } 40% { transform: translateX(-50%) translateY(-6px); } 60% { transform: translateX(-50%) translateY(-3px); } }
+    
+    /* Generici */
+    .stats { display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 2rem; }
+    .stat-item { text-align: center; flex: 1; min-width: 120px; }
+    .stat-number { font-size: 2.5rem; font-weight: 700; color: var(--hero-accent); }
+    .stat-label { font-size: 0.9rem; opacity: 0.7; }
+    .press-card { background: var(--card-bg); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid var(--hero-btn-border); }
+    .press-quote { font-style: italic; margin-bottom: 1rem; }
+    .press-source { font-size: 0.85rem; opacity: 0.7; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
+    .gallery-grid img { border-radius: 8px; transition: transform 0.3s; cursor: pointer; }
+    .gallery-grid img:hover { transform: scale(1.03); }
+    .gear-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+    .gear-category h3 { margin-bottom: 0.5rem; color: var(--hero-accent); }
+    .gear-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .gear-tag { background: var(--hero-btn-bg); padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid var(--hero-btn-border); }
+    .social-links { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; }
+    .social-btn { background: var(--hero-btn-bg); padding: 0.6rem 1.2rem; border-radius: 8px; border: 1px solid var(--hero-btn-border); display: inline-block; color: var(--text); }
+    footer { text-align: center; padding: 2rem 1rem; border-top: 1px solid var(--hero-btn-border); margin-top: 4rem; font-size: 0.85rem; opacity: 0.6; }
+
+    @media (max-width: 640px) {
+      .hero-ctas { flex-direction: column; align-items: center; }
+      .btn { width: 100%; max-width: 320px; justify-content: center; }
+      .hero-title { font-size: 2.8rem; }
+      .hero-player { padding: 0.75rem; }
+      .nav-links { display: none; } /* Menu semplificato per mobile (da espandere nel punto 2) */
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">G. DI MAURO</div>
+      <ul class="nav-links">
+        <li><a href="#about">Biografia</a></li>
+        <li><a href="#discografia">Discografia</a></li>
+        <li><a href="#press">Press</a></li>
+        <li><a href="#galleria">Galleria</a></li>
+        <li><a href="blog.html">Diario</a></li>
+        <li><a href="#dj">DJ Set</a></li>
+        <li><a href="#listen">Ascolta</a></li>
+        <li><a href="#gear">Strumenti</a></li>
+        <li><a href="#contatti">Contatti</a></li>
+        <li><a href="the-amp.html">The Amp</a></li>
+      </ul>
+      <div class="lang-switch" title="Cambia lingua">IT | EN</div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO MODIFICATO (PUNTO 1) -->
+    <section id="hero" class="hero-section">
+      <div class="hero-content">
+        <p class="hero-subtitle">Musicista · Produttore · Compositore · DJ</p>
+        <h1 class="hero-title">Gaetano Di Mauro</h1>
+        <p class="hero-desc">Musicista, compositore e produttore catanese. Dall'ambient all'elettronica, dalla chitarra alla computer music. Ultimo lavoro: <strong>Rinse</strong> — 2025.</p>
+        <div class="hero-player">
+          <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/YOUR_TRACK_ID?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Anteprima Rinse - Gaetano Di Mauro"></iframe>
+          <p class="player-note">🎧 Anteprima di <em>Rinse</em> (2025)</p>
+        </div>
+        <div class="hero-ctas">
+          <a href="#listen" class="btn btn-primary">▶ Ascolta Rinse</a>
+          <a href="#contatti" class="btn btn-secondary">📩 Booking & Collaborazioni</a>
+          <a href="#dj" class="btn btn-tertiary">🎧 DJ Set</a>
+        </div>
+        <div class="scroll-indicator" onclick="document.querySelector('#about').scrollIntoView({behavior:'smooth'})">
+          <span>Scopri di più</span>
+          <svg class="arrow-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2>Biografia</h2>
+      <p><strong>Suono come linguaggio</strong></p>
+      <p>Gaetano Di Mauro è un musicista, compositore e produttore catanese. Appassionato di musica fin da bambino, ha iniziato a suonare la chitarra nel 1997, prima da autodidatta e poi al CESM di Catania. Le sue influenze spaziano da Pink Floyd e Pat Metheny a Miles Davis, Ennio Morricone e John Williams.</p>
+      <p>La sua discografia conta quattordici pubblicazioni tra album, EP e singoli — dall'ambient classico di <em>Adagio Espressivo</em> (2015) fino al recente <em>Rinse</em> (2025), passando per concept album come <em>Television</em> e collaborazioni come <em>Interplay</em> con Antonino Cortese.</p>
+      <div class="stats">
+        <div class="stat-item"><div class="stat-number">20+</div><div class="stat-label">Anni di carriera</div></div>
+        <div class="stat-item"><div class="stat-number">14</div><div class="stat-label">Pubblicazioni</div></div>
+        <div class="stat-item"><div class="stat-number">CT</div><div class="stat-label">Catania, Sicilia</div></div>
+        <div class="stat-item"><div class="stat-number">7K</div><div class="stat-label">Ascoltatori / mese</div></div>
+      </div>
+    </section>
+
+    <section id="discografia">
+      <h2>Discografia</h2>
+      <p>Passa il mouse sulla cover per vedere i brani</p>
+      <div style="background:var(--card-bg); padding:2rem; border-radius:12px; text-align:center; border:1px solid var(--hero-btn-border);">
+        <p style="opacity:0.6;">[Griglia cover con hover/tap da implementare nel punto 2]</p>
+      </div>
+    </section>
+
+    <section id="press">
+      <h2>Press & Reviews</h2>
+      <p>La critica ha scritto di me</p>
+      <div class="press-card">
+        <img src="./img/cover-Ausosa.jpeg" alt="Cover Ausosa" style="max-width:200px; margin-bottom:1rem; border-radius:8px;">
+        <p class="press-quote">"Una narrazione interessante e più ambiziosa della stessa musica che la contiene. Echi di Pink Floyd, Moderat, Morricone, Einaudi e Metheny in un'alternanza di rock, fusion, elettronica e classica minimale."</p>
+        <p class="press-source">Sergio Sciambra — Rockit.it · Ausosa, 2024</p>
+      </div>
+      <div class="press-card">
+        <img src="./img/cover-Television.jpg" alt="Cover Television" style="max-width:200px; margin-bottom:1rem; border-radius:8px;">
+        <p class="press-quote">"Un disco coraggioso. Il Catanese Gaetano Di Mauro confeziona un Concept Album elettronico strumentale di grande spessore — scorre in maniera sempre piacevole tenendoti compagnia come farebbe la Tv."</p>
+        <p class="press-source">AiM — Alternative Indie Music · Television, 2020 · 10/10</p>
+      </div>
+      <div class="press-card">
+        <img src="./img/cover-Television.jpg" alt="Cover Television" style="max-width:200px; margin-bottom:1rem; border-radius:8px;">
+        <p class="press-quote">"La musica di Di Mauro non si limita a commentare, ma produce senso. Una vera e propria esperienza sensoriale che dalle orecchie si trasmette al cervello, creando immagini vere e proprie."</p>
+        <p class="press-source">Europa e Cultura Elettronica · Television, 2020</p>
+      </div>
+    </section>
+
+    <section id="galleria">
+      <h2>Galleria</h2>
+      <div class="gallery-grid">
+        <img src="./img/gaetano-di-mauro-with-classic-guitar-on-the-sofa.jpg" alt="Gaetano Di Mauro con chitarra classica sul divano" loading="lazy">
+        <img src="./img/gaetano-di-mauro-classic-guitar.jpg" alt="Gaetano Di Mauro con chitarra classica" loading="lazy">
+        <img src="./img/gaetano-di-mauro-in-studio.jpeg" alt="Gaetano Di Mauro in studio" loading="lazy">
+        <img src="./img/gaetano-di-mauro-picture.jpg" alt="Ritratto di Gaetano Di Mauro" loading="lazy">
+        <img src="./img/gaetano-di-mauro-guitar-and-projector.jpg" alt="Gaetano Di Mauro con chitarra e proiettore" loading="lazy">
+        <img src="./img/gaetano-di-mauro-with-ibanez-guitar.jpg" alt="Gaetano Di Mauro con chitarra Ibanez" loading="lazy">
+        <img src="./img/gaetano-di-mauro-with-guitars.jpg" alt="Gaetano Di Mauro con le chitarre" loading="lazy">
+        <img src="./img/gaetano-di-mauro-profile-picture.png" alt="Foto profilo di Gaetano Di Mauro" loading="lazy">
+        <img src="./img/gaetano-di-mauro-red-shirt.png" alt="Gaetano Di Mauro in camicia rossa" loading="lazy">
+      </div>
+      <p style="margin-top:1rem; opacity:0.7; font-size:0.9rem;">ESC / CHIUDI · ← →</p>
+    </section>
+
+    <section id="instagram">
+      <h2>Instagram · @gd_yeah</h2>
+      <p>Aggiornamenti dal vivo, dietro le quinte, nuove uscite e momenti dal palco. Seguimi su Instagram per restare in contatto.</p>
+      <a href="https://www.instagram.com/gd_yeah" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="margin:1rem 0; display:inline-block;">Apri Instagram ↗</a>
+      <p style="opacity:0.7; font-size:0.9rem;">Account ufficiale @gd_yeah · Gaetano Di Mauro · Ultimi post</p>
+      <p style="opacity:0.6; font-size:0.85rem; margin-top:0.5rem;">Le storie in evidenza sono visibili direttamente su Instagram.</p>
+      <a href="https://www.instagram.com/gd_yeah" target="_blank" rel="noopener noreferrer" style="color:var(--hero-accent);">Vedi le storie ↗</a>
+    </section>
+
+    <section id="dj">
+      <h2>DJ Set · Mix</h2>
+      <p><strong>Dietro ai piatti</strong></p>
+      <p>Oltre alla composizione e alla produzione musicale, Gaetano porta la sua sensibilità sonora anche nei DJ set: percorsi elettronici che spaziano dall'ambient all'elettronica più sperimentale, con un'attenzione ossessiva per i dettagli e per la costruzione di atmosfere.</p>
+      <p>Ogni mix è un viaggio — non una semplice selezione di brani, ma una narrazione coerente che riflette la stessa cura che mette in ogni sua produzione originale.</p>
+      <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin:1rem 0;">
+        <span class="gear-tag">Ambient</span>
+        <span class="gear-tag">Electronic</span>
+        <span class="gear-tag">Experimental</span>
+        <span class="gear-tag">Downtempo</span>
+      </div>
+      <p style="opacity:0.8;">Mixcloud · ∞ Set pubblicati · MC · Mixcloud · Ultimi set</p>
+      <a href="https://www.mixcloud.com/gaetano-di-mauro/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="margin:1rem 0; display:inline-block;">Apri Mixcloud ↗</a>
+    </section>
+
+    <section id="listen">
+      <h2>Ascolta</h2>
+      <p>La mia musica su tutte le piattaforme</p>
+      <div style="background:var(--card-bg); padding:1.5rem; border-radius:12px; display:flex; flex-wrap:wrap; align-items:center; gap:1rem; border:1px solid var(--hero-btn-border);">
+        <img src="./img/cover-Rinse.jpg" alt="Cover Rinse" style="width:120px; height:120px; object-fit:cover; border-radius:8px;">
+        <div>
+          <p style="opacity:0.7; font-size:0.9rem;">Ultimo singolo · 2025</p>
+          <h3 style="margin:0.3rem 0;">Rinse</h3>
+          <p style="opacity:0.8;">Gaetano Di Mauro</p>
+        </div>
+        <div style="margin-left:auto; display:flex; flex-direction:column; gap:0.5rem;">
+          <a href="#" class="social-btn">Spotify Streaming →</a>
+          <a href="#" class="social-btn">Apple Music Streaming →</a>
+          <a href="#" class="social-btn">SoundCloud Streaming →</a>
+          <a href="#" class="social-btn">YouTube Video & Musica →</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="gear">
+      <h2>Strumenti & Attrezzatura</h2>
+      <p>Il suono nasce dagli strumenti giusti</p>
+      <p style="opacity:0.8; margin-bottom:1.5rem;">Le marche con cui lavoro ogni giorno — in studio e sul palco.</p>
+      <div class="gear-grid">
+        <div class="gear-category">
+          <h3>Chitarre & Amplificatori</h3>
+          <div class="gear-list">
+            <span class="gear-tag">Ibanez</span>
+            <span class="gear-tag">Fender</span>
+            <span class="gear-tag">Marshall</span>
+            <span class="gear-tag">D'Addario</span>
+          </div>
+        </div>
+        <div class="gear-category">
+          <h3>Audio & Studio</h3>
+          <div class="gear-list">
+            <span class="gear-tag">Focusrite</span>
+            <span class="gear-tag">Proel</span>
+            <span class="gear-tag">JBL</span>
+            <span class="gear-tag">Philips</span>
+          </div>
+        </div>
+        <div class="gear-category">
+          <h3>DJ & Produzione</h3>
+          <div class="gear-list">
+            <span class="gear-tag">AlphaTheta</span>
+            <span class="gear-tag">Pioneer DJ</span>
+            <span class="gear-tag">Novation</span>
+            <span class="gear-tag">M-Audio</span>
+            <span class="gear-tag">Akai</span>
+          </div>
+        </div>
+        <div class="gear-category">
+          <h3>Software & DAW</h3>
+          <div class="gear-list">
+            <span class="gear-tag">Logic Pro</span>
+            <span class="gear-tag">Ableton Live</span>
+            <span class="gear-tag">Cubase</span>
+            <span class="gear-tag">AmpliTube</span>
+            <span class="gear-tag">Guitar Rig</span>
+            <span class="gear-tag">rekordbox</span>
+            <span class="gear-tag">TONEX</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="blog">
+      <h2>Diario Sonoro</h2>
+      <p>Note dal vivo</p>
+      <p style="opacity:0.8;">Nuovi brani in lavorazione, riflessioni sui dischi già usciti, vita da musicista. Senza filtri.</p>
+      <a href="blog.html" class="btn btn-primary" style="margin-top:1rem; display:inline-block;">Leggi il diario →</a>
+    </section>
+
+    <section id="contatti">
+      <h2>Contatti</h2>
+      <p>Lavoriamo insieme</p>
+      <p style="opacity:0.8;">Per collaborazioni, booking e produzioni</p>
+      <a href="mailto:theampmusic@gmail.com" class="btn btn-primary" style="margin:1rem 0; display:inline-block;">Scrivimi</a>
+      <h3 style="margin-top:2rem;">Seguimi</h3>
+      <div class="social-links">
+        <a href="https://www.instagram.com/gd_yeah" target="_blank" rel="noopener noreferrer" class="social-btn">📷 Instagram @gd_yeah</a>
+        <a href="https://www.facebook.com/GaetanoDiMauro/" target="_blank" rel="noopener noreferrer" class="social-btn">◆ Facebook GaetanoDiMauro</a>
+        <a href="https://x.com/GDgaetano" target="_blank" rel="noopener noreferrer" class="social-btn">✕ Twitter / X @GDgaetano</a>
+        <a href="https://www.youtube.com/c/GaetanoDiMauro" target="_blank" rel="noopener noreferrer" class="social-btn">▶ YouTube GaetanoDiMauro</a>
+        <a href="https://soundcloud.com/gaetanodimauro" target="_blank" rel="noopener noreferrer" class="social-btn">☁ SoundCloud</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 — Gaetano Di Mauro. Tutti i diritti riservati.</p>
+    <p style="margin-top:0.5rem; font-size:0.8rem;">Realizzato con cura sonora.</p>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.hero-ctas a, .scroll-indicator').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(btn.getAttribute('href') || '#about');
+        if(target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>
+    
