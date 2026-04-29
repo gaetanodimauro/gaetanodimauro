@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aggiornamenti — Gaetano Di Mauro</title>
+<meta name="description" content="Aggiornamenti di Gaetano Di Mauro. Nuovi brani, sessioni di studio, riflessioni e vita da musicista.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.gaetanodimauro.com/blog.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.gaetanodimauro.com/blog.html">
+<meta property="og:title" content="Aggiornamenti — Gaetano Di Mauro">
+<meta property="og:description" content="Aggiornamenti di Gaetano Di Mauro. Nuovi brani, sessioni di studio, riflessioni.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060608;--bg2:#0c0c10;--bg3:#111116;
+  --white:#f0ede8;--cream:#c8c0b0;
+  --gold:#b8963e;--gold2:#7a5c20;
+  --line:rgba(255,255,255,0.07);--line2:rgba(184,150,62,0.2);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:'Cormorant Garamond',serif;overflow-x:hidden;cursor:none}
+
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");opacity:.025;z-index:9990;pointer-events:none}
+
+.cursor{width:8px;height:8px;background:var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transition:transform .15s;mix-blend-mode:screen}
+.cursor-ring{width:30px;height:30px;border:1px solid rgba(184,150,62,.4);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transition:transform .4s,width .3s,height .3s}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.8rem 4rem}
+nav::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(6,6,8,.97),transparent);z-index:-1;pointer-events:none}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.2em;color:var(--white);text-decoration:none}
+.nav-logo span{color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:1.5rem}
+.nav-back{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cream);text-decoration:none;border:1px solid var(--line2);padding:.5rem 1.2rem;transition:all .3s;cursor:none}
+.nav-back:hover{border-color:var(--gold);color:var(--gold)}
+.lang-switch{display:flex;gap:2px}
+.lang-btn{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.12em;padding:.3rem .65rem;border:1px solid rgba(255,255,255,.12);background:transparent;color:var(--cream);cursor:pointer;transition:all .3s}
+.lang-btn.active{border-color:var(--gold);color:var(--gold);background:rgba(184,150,62,.08)}
+
+/* HERO — stretto e tipografico */
+#hero{padding:14rem 4rem 5rem;border-bottom:1px solid var(--line);position:relative;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end}
+.hero-year{position:absolute;top:7rem;right:4rem;font-family:'Bebas Neue',sans-serif;font-size:clamp(6rem,12vw,14rem);color:rgba(184,150,62,.06);line-height:1;pointer-events:none;letter-spacing:.02em}
+.hero-eyebrow{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;opacity:0;animation:fadeUp .9s ease .2s forwards}
+.hero-eyebrow::before{content:'';display:block;width:40px;height:1px;background:var(--gold)}
+.hero-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,9vw,9rem);line-height:.9;letter-spacing:.02em;opacity:0;animation:fadeUp .9s ease .4s forwards}
+.hero-sub{font-size:1.1rem;font-style:italic;font-weight:300;color:var(--cream);line-height:1.8;opacity:0;animation:fadeUp .9s ease .6s forwards;align-self:end}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* FEED — colonna unica editoriale */
+#feed{max-width:780px;margin:0 auto;padding:0 4rem 10rem}
+
+/* ENTRY — ogni post come voce di diario */
+.entry{padding:5rem 0;border-bottom:1px solid var(--line);position:relative;opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
+.entry.visible{opacity:1;transform:none}
+.entry:last-child{border-bottom:none}
+
+/* numero progressivo decorativo */
+.entry-num{position:absolute;right:0;top:5rem;font-family:'Bebas Neue',sans-serif;font-size:6rem;color:rgba(184,150,62,.05);line-height:1;pointer-events:none}
+
+.entry-meta{display:flex;align-items:center;gap:1.5rem;margin-bottom:1.8rem}
+.entry-tag{font-family:'Space Mono',monospace;font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold2);padding:.25rem .7rem}
+.entry-date{font-family:'Space Mono',monospace;font-size:.48rem;letter-spacing:.15em;color:var(--cream);opacity:.4}
+.entry-dot{width:3px;height:3px;border-radius:50%;background:var(--gold);opacity:.3}
+
+.entry-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,5vw,3.8rem);line-height:.95;letter-spacing:.02em;margin-bottom:2rem;cursor:none}
+
+.entry-body{font-size:1.15rem;line-height:1.95;color:var(--cream);font-weight:300;max-height:0;overflow:hidden;transition:max-height .6s cubic-bezier(.4,0,.2,1),opacity .4s ease;opacity:0}
+.entry-body.open{max-height:1000px;opacity:1}
+.entry-body p{margin-bottom:1.4em}
+.entry-body p:last-child{margin-bottom:0}
+
+.entry-preview{font-size:1.15rem;line-height:1.95;color:var(--cream);font-weight:300;font-style:italic;margin-bottom:2rem;opacity:.75}
+
+.entry-footer{display:flex;align-items:center;justify-content:space-between;margin-top:2rem}
+.entry-toggle{font-family:'Space Mono',monospace;font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);background:none;border:none;cursor:none;display:flex;align-items:center;gap:.8rem;transition:gap .3s;padding:0}
+.entry-toggle:hover{gap:1.2rem}
+.entry-toggle .arrow{display:inline-block;transition:transform .35s ease}
+.entry-toggle.open .arrow{transform:rotate(90deg)}
+
+.entry-link{font-family:'Space Mono',monospace;font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cream);opacity:.4;text-decoration:none;transition:color .2s,opacity .2s;cursor:none}
+.entry-link:hover{color:var(--gold);opacity:1}
+
+/* PRIMA ENTRY — in evidenza */
+.entry.featured .entry-title{font-size:clamp(3rem,7vw,5.5rem)}
+.entry.featured .entry-body{font-size:1.2rem}
+.entry.featured .entry-preview{font-style:normal;opacity:1;font-size:1.2rem}
+
+/* CTA FOOTER */
+#cta{border-top:1px solid var(--line);padding:8rem 4rem;text-align:center;position:relative;overflow:hidden}
+#cta::before{content:'GDM';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Bebas Neue',sans-serif;font-size:22vw;color:rgba(255,255,255,.018);white-space:nowrap;pointer-events:none;letter-spacing:.1em}
+.cta-label{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem}
+.cta-h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,5rem);line-height:1;margin-bottom:1rem}
+.cta-sub{font-size:1.1rem;font-style:italic;color:var(--cream);font-weight:300;margin-bottom:3rem;max-width:440px;margin-left:auto;margin-right:auto;line-height:1.8}
+.cta-btn{display:inline-block;padding:1.1rem 3rem;border:1px solid var(--gold);color:var(--gold);font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;transition:all .3s;position:relative;overflow:hidden;cursor:none}
+.cta-btn::before{content:'';position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s;z-index:-1}
+.cta-btn:hover{color:var(--bg)}.cta-btn:hover::before{transform:scaleX(1)}
+
+footer{border-top:1px solid var(--line);background:#040404;padding:2.5rem 4rem;display:flex;justify-content:space-between;align-items:center}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.2em;color:var(--cream);opacity:.4}
+.footer-copy{font-family:'Space Mono',monospace;font-size:.5rem;color:var(--cream);opacity:.25;letter-spacing:.1em}
+
+@media(max-width:768px){
+  nav{padding:1.5rem 2rem}
+  #hero{padding:10rem 2rem 4rem;grid-template-columns:1fr;gap:2rem}
+  .hero-year{display:none}
+  #feed{padding:0 2rem 6rem}
+  #cta{padding:5rem 2rem}
+  footer{flex-direction:column;gap:1rem;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">G<span>.</span>DI MAURO</a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-back" data-it="← Home" data-en="← Home">← Home</a>
+    <div class="lang-switch">
+      <button class="lang-btn" data-lang="it" onclick="setLang('it')">IT</button>
+      <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hero-year">2026</div>
+  <div>
+    <p class="hero-eyebrow" data-it="Pensieri · Musica · Studio" data-en="Thoughts · Music · Studio">Pensieri · Musica · Studio</p>
+    <h1 class="hero-h1" data-it="Aggiorna-<br>menti" data-en="Updates">Aggiorna-<br>menti</h1>
+  </div>
+  <p class="hero-sub" data-it="Nuovi brani in lavorazione, riflessioni sui dischi già usciti, vita da musicista. Senza filtri." data-en="New tracks in progress, reflections on released records, life as a musician. Unfiltered.">
+    Nuovi brani in lavorazione, riflessioni sui dischi già usciti, vita da musicista. Senza filtri.
+  </p>
+</section>
+
+<section id="feed">
+  <div id="feedList"></div>
+</section>
+
+<section id="cta">
+  <div class="cta-label" data-it="Seguimi" data-en="Follow me">Seguimi</div>
+  <h2 class="cta-h2" data-it="Rimani in contatto" data-en="Stay in touch">Rimani in contatto</h2>
+  <p class="cta-sub" data-it="Per sapere quando esce la prossima nota, seguimi su Instagram." data-en="To know when the next note comes out, follow me on Instagram.">
+    Per sapere quando esce la prossima nota, seguimi su Instagram.
+  </p>
+  <a href="https://www.instagram.com/gd_yeah" target="_blank" class="cta-btn" data-it="Seguimi su Instagram" data-en="Follow on Instagram">Seguimi su Instagram</a>
+</section>
+
+<footer>
+  <div class="footer-logo">Gaetano Di Mauro</div>
+  <div class="footer-copy">© 2026 — <span data-it="Tutti i diritti riservati" data-en="All rights reserved">Tutti i diritti riservati</span></div>
+</footer>
+
+<script>
+/* ════════════════════════════════════════════════════════════════
+   ★ AGGIUNGI I TUOI POST QUI SOTTO ★
+
+   Copia un blocco e incollalo IN CIMA (primo = più recente).
+   Campi:
+   - date:  "Aprile 2026"
+   - tag:   "Studio" | "Live" | "Riflessione" | "Nuovo singolo" | "Album"
+   - it/en: { title, excerpt (breve), body (testo completo, usa \n\n tra paragrafi) }
+   - link:  "" oppure "ausosa.html"
+════════════════════════════════════════════════════════════════ */
+const POSTS = [
+  {
+    date: "Aprile 2026",
+    tag: "Aggiornamento",
+    it: {
+      title: "Il sito è online",
+      excerpt: "Finalmente uno spazio tutto mio. Un posto dove raccogliere tutto — la musica, i pensieri, i lavori in corso.",
+      body: "Finalmente uno spazio tutto mio. Un posto dove raccogliere tutto — la musica, i pensieri, i lavori in corso.\n\nHo voluto costruire questo sito come una stanza: oscura, essenziale, con qualcosa che brilla nell'angolo. Non un portfolio, ma una presenza.\n\nIl diario sonoro sarà il posto dove scrivo senza filtri: cosa sto ascoltando, cosa sto costruendo, cosa non funziona, cosa mi sorprende."
+    },
+    en: {
+      title: "The site is live",
+      excerpt: "Finally a space of my own. A place to gather everything — the music, the thoughts, the works in progress.",
+      body: "Finally a space of my own. A place to gather everything — the music, the thoughts, the works in progress.\n\nI wanted to build this site like a room: dark, essential, with something glowing in the corner. Not a portfolio, but a presence.\n\nThe sound journal will be the place where I write without filters: what I'm listening to, what I'm building, what doesn't work, what surprises me."
+    },
+    link: ""
+  },
+  {
+    date: "Novembre 2025",
+    tag: "Nuovo singolo",
+    it: {
+      title: "Rinse — 27 Novembre",
+      excerpt: "Con RINSE apro una porta che porta dentro un suono nuovo ma con radici profonde: fusione tra elettronica, ritmo analogico, momenti atmosferici.",
+      body: "Con RINSE apro una porta che porta dentro un suono nuovo ma con radici profonde: fusione tra elettronica, ritmo analogico, momenti atmosferici. Un modo per rinfrescare il mio linguaggio musicale, ritrovare libertà di sperimentazione, e dare luce a paesaggi sonori che non ho esplorato fino ad oggi.\n\nIl brano nasce come un omaggio alla musica elettronica degli anni '90, con riferimenti diretti all'energia rave che ha influenzato intere generazioni. Con RINSE, non cerco nostalgia, ma una rinascita sonora: unire le radici del passato con una produzione contemporanea, dando vita a un suono più fisico, diretto e libero.\n\nVolevo ricatturare quella forza istintiva che mi ha fatto innamorare dell'elettronica. È un punto di svolta: un reset, un lavaggio, un nuovo inizio."
+    },
+    en: {
+      title: "Rinse — November 27th",
+      excerpt: "With RINSE I open a door into a new sound with deep roots: a fusion of electronics, analogue rhythm, and atmospheric moments.",
+      body: "With RINSE I open a door into a new sound with deep roots: a fusion of electronics, analogue rhythm, and atmospheric moments. A way to refresh my musical language, rediscover freedom of experimentation, and shed light on sonic landscapes I haven't explored until now.\n\nThe track is born as a tribute to the electronic music of the 1990s, with direct references to the rave energy that influenced entire generations. With RINSE, I'm not chasing nostalgia, but a sonic rebirth: merging the roots of the past with a contemporary production, bringing to life a sound that is more physical, direct and free.\n\nI wanted to recapture that instinctive force that made me fall in love with electronics. It's a turning point: a reset, a wash, a new beginning."
+    },
+    link: ""
+  },
+  {
+    date: "Novembre 2024",
+    tag: "Album",
+    it: {
+      title: "Ausosa: un anno dopo",
+      excerpt: "Un anno fa usciva Ausosa. Guardare indietro a un disco è sempre strano — come leggere il proprio diario.",
+      body: "Un anno fa usciva Ausosa. Guardare indietro a un disco è sempre strano — come leggere il proprio diario.\n\nOgni brano era un frammento di qualcosa che stavo elaborando. Mr. Werran era la rabbia. Eirene's Flowers era la resa.\n\nSono contento di averlo fatto. Non è il disco che avevo in testa all'inizio — è diventato qualcosa di più onesto."
+    },
+    en: {
+      title: "Ausosa: one year later",
+      excerpt: "A year ago Ausosa came out. Looking back at a record is always strange — like reading your own diary.",
+      body: "A year ago Ausosa came out. Looking back at a record is always strange — like reading your own diary.\n\nEvery track was a fragment of something I was processing. Mr. Werran was the anger. Eirene's Flowers was surrender.\n\nI'm glad I made it. It's not the record I had in mind at the beginning — it became something more honest."
+    },
+    link: "ausosa.html"
+  },
+  {
+    date: "Settembre 2024",
+    tag: "Riflessione",
+    it: {
+      title: "Suonare da soli vs suonare con altri",
+      excerpt: "Con The Amp mi sono riscoperto. La chitarra da sola parla, ma con una band urla.",
+      body: "Con The Amp mi sono riscoperto. La chitarra da sola parla, ma con una band urla.\n\nHo passato anni a costruire musica in solitaria — loop, strati, computer. È un lavoro meditativo, quasi terapeutico.\n\nPoi è arrivato The Amp, e ho capito che certe cose non le puoi fare da solo. L'energia live è un'altra dimensione."
+    },
+    en: {
+      title: "Playing alone vs playing with others",
+      excerpt: "With The Amp I rediscovered myself. Guitar alone speaks, but with a band it shouts.",
+      body: "With The Amp I rediscovered myself. Guitar alone speaks, but with a band it shouts.\n\nI spent years building music in solitude — loops, layers, computers. It's a meditative work, almost therapeutic.\n\nThen The Amp arrived, and I understood that some things you can't do alone. Live energy is another dimension."
+    },
+    link: "the-amp.html"
+  }
+];
+
+/* ════ SISTEMA ════ */
+function getLang(){ return localStorage.getItem('gdm_lang') || 'it'; }
+
+function setLang(lang){
+  localStorage.setItem('gdm_lang', lang);
+  document.querySelectorAll('[data-it]').forEach(el => {
+    const val = lang === 'it' ? el.dataset.it : el.dataset.en;
+    if(val !== undefined) el.innerHTML = val;
+  });
+  document.querySelectorAll('.lang-btn').forEach(b =>
+    b.classList.toggle('active', b.dataset.lang === lang)
+  );
+  renderFeed(lang);
+}
+
+function toggleEntry(btn, id) {
+  const body = document.getElementById('body-' + id);
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  btn.classList.toggle('open', !isOpen);
+  const lang = getLang();
+  btn.innerHTML = isOpen
+    ? `${lang==='it'?'Leggi tutto':'Read more'} <span class="arrow">›</span>`
+    : `${lang==='it'?'Chiudi':'Close'} <span class="arrow">›</span>`;
+}
+
+function renderFeed(lang) {
+  const list = document.getElementById('feedList');
+  list.innerHTML = POSTS.map((p, i) => {
+    const txt = p[lang] || p.it;
+    const paras = txt.body.split('\n\n').map(t => `<p>${t}</p>`).join('');
+    const linkHtml = p.link
+      ? `<a href="${p.link}" class="entry-link" data-it="Ascolta il disco →" data-en="Listen to the album →">${lang==='it'?'Ascolta il disco →':'Listen to the album →'}</a>`
+      : `<span></span>`;
+    return `
+    <article class="entry${i===0?' featured':''}" id="entry-${i}">
+      <div class="entry-num">${String(POSTS.length - i).padStart(2,'0')}</div>
+      <div class="entry-meta">
+        <span class="entry-tag">${p.tag}</span>
+        <span class="entry-dot"></span>
+        <span class="entry-date">${p.date}</span>
+      </div>
+      <h2 class="entry-title">${txt.title}</h2>
+      <p class="entry-preview">${txt.excerpt}</p>
+      <div class="entry-body" id="body-${i}">${paras}</div>
+      <div class="entry-footer">
+        <button class="entry-toggle" onclick="toggleEntry(this, ${i})">
+          ${lang==='it'?'Leggi tutto':'Read more'} <span class="arrow">›</span>
+        </button>
+        ${linkHtml}
+      </div>
+    </article>`;
+  }).join('');
+
+  // reveal on scroll
+  const entries = list.querySelectorAll('.entry');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e,i) => {
+      if(e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i*100);
+    });
+  }, { threshold: 0.08 });
+  entries.forEach(el => obs.observe(el));
+}
+
+// Cursor
+const cur = document.getElementById('cursor'), ring = document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cur.style.left=mx-4+'px'; cur.style.top=my-4+'px'; });
+(function animR(){ rx+=(mx-rx)*.12; ry+=(my-ry)*.12; ring.style.left=rx-15+'px'; ring.style.top=ry-15+'px'; requestAnimationFrame(animR); })();
+document.addEventListener('mouseover', e => { if(e.target.closest('a,button')){ cur.style.transform='scale(3)'; ring.style.width='50px'; ring.style.height='50px'; }});
+document.addEventListener('mouseout', e => { if(e.target.closest('a,button')){ cur.style.transform='scale(1)'; ring.style.width='30px'; ring.style.height='30px'; }});
+
+// Init
+const _l = getLang();
+document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === _l));
+renderFeed(_l);
+setTimeout(() => setLang(_l), 80);
+</script>
+</body>
+</html>
