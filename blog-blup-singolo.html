@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuovo Singolo: BLUP — Gaetano Di Mauro</title>
+<meta name="description" content="Gaetano Di Mauro annuncia il nuovo singolo BLUP — la storia della mascotte, come è nata e la nuova direzione elettronica dopo Rinse.">
+<meta property="og:title" content="Nuovo Singolo: BLUP — Gaetano Di Mauro">
+<meta property="og:description" content="Dopo Rinse arriva BLUP. Un singolo, una mascotte, una nuova direzione. La storia di come è nato tutto.">
+<meta property="og:image" content="https://gaetanodimauromusic.altervista.org/wp-content/uploads/2026/03/COVER-AUSOSA-960x960.jpg">
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:    #06060a;
+  --bg2:   #09090f;
+  --white: #f0ede8;
+  --cream: #c8c0b0;
+  --gold:  #b8963e;
+  --gold2: #7a5c20;
+  --cyan:  #00d4ff;
+  --warm:  #e8a050;
+  --line:  rgba(255,255,255,0.07);
+}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--white);
+  font-family:'Cormorant Garamond',serif;
+  overflow-x:hidden;
+  cursor:none;
+}
+
+.cur{width:8px;height:8px;background:var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transition:transform .15s;mix-blend-mode:screen}
+.cur-ring{width:28px;height:28px;border:1px solid rgba(184,150,62,.4);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transition:all .4s ease}
+
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity:.025;z-index:9990;pointer-events:none;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:1.8rem 4rem;
+  display:flex;justify-content:space-between;align-items:center;
+  background:linear-gradient(to bottom,rgba(6,6,10,.95),transparent);
+}
+.nav-logo{
+  font-family:'Bebas Neue',sans-serif;font-size:1.3rem;
+  letter-spacing:.2em;color:var(--white);text-decoration:none;
+}
+.nav-logo span{color:var(--gold)}
+.nav-back{
+  font-family:'Space Mono',monospace;font-size:.55rem;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--cream);text-decoration:none;
+  display:flex;align-items:center;gap:.6rem;
+  opacity:.6;transition:opacity .3s;cursor:none;
+}
+.nav-back:hover{opacity:1}
+
+/* ── HERO ── */
+.post-hero{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  position:relative;
+  overflow:hidden;
+}
+
+/* Left — image */
+.hero-visual{
+  position:relative;overflow:hidden;
+}
+.hero-visual img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:50% 20%;
+  filter:brightness(.7) saturate(1.2);
+  animation:zoomIn 18s ease-in-out infinite alternate;
+}
+@keyframes zoomIn{from{transform:scale(1.04)}to{transform:scale(1.1)}}
+.hero-visual::after{
+  content:'';position:absolute;inset:0;
+  background:
+    linear-gradient(to right,transparent 60%,var(--bg) 100%),
+    linear-gradient(to top,var(--bg) 0%,transparent 20%);
+}
+
+/* Right — text */
+.hero-text{
+  display:flex;flex-direction:column;
+  justify-content:flex-end;
+  padding:8rem 4rem 5rem 3rem;
+  position:relative;z-index:2;
+  background:linear-gradient(to right,rgba(6,6,10,0),var(--bg) 30%);
+}
+
+/* Vertical lines */
+.hero-text::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:1px;
+  background:linear-gradient(to bottom,transparent,var(--gold2),transparent);
+  opacity:.5;
+}
+
+.post-eyebrow{
+  font-family:'Space Mono',monospace;font-size:.56rem;
+  letter-spacing:.32em;text-transform:uppercase;color:var(--gold);
+  display:flex;align-items:center;gap:1rem;margin-bottom:2rem;
+  opacity:0;animation:fadeUp .8s ease .3s forwards;
+}
+.post-eyebrow::before{content:'';width:24px;height:1px;background:var(--gold)}
+
+.post-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(5rem,10vw,10rem);line-height:.85;
+  letter-spacing:.03em;color:var(--white);
+  opacity:0;animation:fadeUp .9s ease .5s forwards;
+}
+.post-title .accent{color:var(--cyan)}
+
+.post-subtitle{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.35rem;font-style:italic;font-weight:300;
+  color:var(--cream);line-height:1.6;margin-top:1.5rem;
+  max-width:380px;
+  opacity:0;animation:fadeUp .9s ease .7s forwards;
+}
+
+.post-meta{
+  display:flex;align-items:center;gap:1.5rem;margin-top:2.5rem;
+  opacity:0;animation:fadeUp .9s ease .9s forwards;
+}
+.meta-date{
+  font-family:'Space Mono',monospace;font-size:.5rem;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--cream);opacity:.4;
+}
+.meta-tag{
+  font-family:'Space Mono',monospace;font-size:.46rem;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold);border:1px solid var(--gold2);padding:.3rem .8rem;
+}
+.meta-tag.new{color:var(--cyan);border-color:rgba(0,212,255,.3)}
+
+/* NEW badge floating */
+.new-badge{
+  position:absolute;top:6rem;right:4rem;
+  font-family:'Bebas Neue',sans-serif;font-size:1rem;
+  letter-spacing:.15em;
+  color:var(--bg);background:var(--cyan);
+  padding:.5rem 1.2rem;
+  animation:pulse 2s ease-in-out infinite;
+  opacity:0;animation:badgePop .6s ease 1.2s forwards,pulse 2s ease-in-out 2s infinite;
+}
+@keyframes badgePop{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(0,212,255,.4)}50%{box-shadow:0 0 20px 4px rgba(0,212,255,.2)}}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── ARTICLE ── */
+article{
+  max-width:760px;
+  margin:0 auto;
+  padding:7rem 2rem 5rem;
+}
+
+/* Lead */
+.lead{
+  font-size:1.5rem;line-height:1.8;
+  font-weight:300;font-style:italic;
+  color:var(--white);
+  border-left:3px solid var(--gold);
+  padding-left:2rem;margin-bottom:4rem;
+}
+
+/* Body */
+p.body{
+  font-size:1.18rem;line-height:2;
+  color:var(--cream);font-weight:300;
+  margin-bottom:2rem;
+}
+p.body em{font-style:italic;color:var(--white)}
+p.body strong{font-weight:400;color:var(--white)}
+
+/* Section heading */
+.art-heading{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:2.8rem;letter-spacing:.06em;
+  color:var(--white);margin:4rem 0 1.5rem;
+  display:flex;align-items:baseline;gap:1rem;
+}
+.art-heading::after{
+  content:'';flex:1;height:1px;
+  background:linear-gradient(to right,var(--gold2),transparent);
+}
+
+/* Full bleed image */
+.full-img{
+  width:calc(100% + 8rem);margin-left:-4rem;
+  margin:3.5rem 0;position:relative;overflow:hidden;
+  border:1px solid var(--line);
+}
+.full-img img{
+  width:100%;display:block;
+  filter:saturate(1.15) brightness(.95);
+}
+.full-img figcaption{
+  padding:.8rem 2rem;
+  font-family:'Space Mono',monospace;font-size:.48rem;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--cream);opacity:.4;
+  background:var(--bg2);
+}
+
+/* Pull quote */
+.pull{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.4rem;font-style:italic;font-weight:300;
+  color:var(--white);line-height:1.25;
+  text-align:center;padding:3rem 2rem;
+  position:relative;margin:3rem 0;
+}
+.pull::before,.pull::after{
+  content:'';display:block;height:1px;
+  background:linear-gradient(to right,transparent,var(--gold2),transparent);
+}
+.pull::before{margin-bottom:2rem}
+.pull::after{margin-top:2rem}
+
+/* BLUP card */
+.blup-card{
+  display:grid;grid-template-columns:220px 1fr;
+  gap:3rem;align-items:center;
+  background:var(--bg2);border:1px solid var(--line);
+  padding:3rem;margin:3.5rem 0;
+  position:relative;overflow:hidden;
+}
+.blup-card::before{
+  content:'';position:absolute;top:0;left:0;bottom:0;width:2px;
+  background:linear-gradient(to bottom,transparent,var(--warm),transparent);
+}
+.blup-card img{
+  width:100%;border-radius:4px;
+  filter:saturate(1.1);
+}
+.blup-card-name{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:4rem;letter-spacing:.1em;line-height:1;
+  color:var(--white);margin-bottom:.5rem;
+}
+.blup-card-name span{color:var(--cyan)}
+.blup-card-desc{
+  font-size:1.05rem;line-height:1.85;
+  color:var(--cream);font-style:italic;font-weight:300;
+}
+.blup-card-origin{
+  font-family:'Space Mono',monospace;font-size:.48rem;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);margin-top:1rem;display:block;
+}
+
+/* Influences */
+.influences{
+  background:var(--bg2);border:1px solid var(--line);
+  padding:2.5rem 3rem;margin:3rem 0;
+  position:relative;overflow:hidden;
+}
+.influences::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(to right,transparent,var(--gold),transparent);
+}
+.inf-label{
+  font-family:'Space Mono',monospace;font-size:.52rem;
+  letter-spacing:.28em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1.8rem;
+}
+.inf-tags{display:flex;flex-wrap:wrap;gap:.8rem}
+.inf-tag{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.5rem;letter-spacing:.06em;
+  color:var(--white);padding:.3rem 1.2rem;
+  border:1px solid var(--line);
+  transition:border-color .3s,color .3s;
+}
+.inf-tag:hover{border-color:var(--gold2);color:var(--gold)}
+
+/* Divider */
+.divider{
+  display:flex;align-items:center;gap:1.5rem;margin:3rem 0;
+}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--line)}
+.divider span{
+  font-family:'Space Mono',monospace;font-size:.5rem;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--gold);
+  white-space:nowrap;
+}
+
+/* Coming soon box */
+.cs-box{
+  background:var(--bg2);border:1px solid var(--line);
+  padding:4rem;text-align:center;margin:3.5rem 0;
+  position:relative;overflow:hidden;
+}
+.cs-box::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 80% at 50% 0%,rgba(0,212,255,.04),transparent);
+  pointer-events:none;
+}
+.cs-box::after{
+  content:'BLUP';position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-family:'Bebas Neue',sans-serif;font-size:12rem;
+  color:rgba(0,212,255,.025);pointer-events:none;
+  white-space:nowrap;letter-spacing:.1em;
+}
+.cs-label{
+  font-family:'Space Mono',monospace;font-size:.52rem;
+  letter-spacing:.32em;text-transform:uppercase;
+  color:var(--cyan);margin-bottom:1.5rem;display:block;
+}
+.cs-single-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:5rem;letter-spacing:.1em;line-height:.85;
+  color:var(--white);margin-bottom:.5rem;position:relative;z-index:1;
+}
+.cs-single-title span{color:var(--cyan)}
+.cs-single-sub{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.2rem;font-style:italic;font-weight:300;
+  color:var(--cream);line-height:1.7;margin:1.5rem auto 2.5rem;
+  max-width:400px;position:relative;z-index:1;
+}
+.cs-stores{
+  display:flex;flex-wrap:wrap;gap:.8rem;
+  justify-content:center;margin-bottom:2.5rem;
+  position:relative;z-index:1;
+}
+.cs-store{
+  font-family:'Space Mono',monospace;font-size:.5rem;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--cream);border:1px solid var(--line);
+  padding:.5rem 1.2rem;transition:border-color .3s,color .3s;
+}
+.cs-store:hover{border-color:var(--gold2);color:var(--gold)}
+.cs-cta{
+  display:inline-block;padding:1rem 3rem;
+  border:1px solid var(--gold);color:var(--gold);
+  font-family:'Space Mono',monospace;font-size:.62rem;
+  letter-spacing:.2em;text-transform:uppercase;
+  text-decoration:none;cursor:none;
+  position:relative;overflow:hidden;transition:color .3s;
+  z-index:1;
+}
+.cs-cta::before{
+  content:'';position:absolute;inset:0;background:var(--gold);
+  transform:scaleX(0);transform-origin:left;transition:transform .3s;z-index:-1;
+}
+.cs-cta:hover{color:var(--bg)}
+.cs-cta:hover::before{transform:scaleX(1)}
+
+/* Share */
+.share{
+  display:flex;align-items:center;gap:1rem;
+  padding:2.5rem 0;border-top:1px solid var(--line);
+  margin-top:4rem;
+}
+.share-lbl{
+  font-family:'Space Mono',monospace;font-size:.5rem;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--cream);opacity:.4;margin-right:.5rem;
+}
+.share a{
+  font-family:'Space Mono',monospace;font-size:.5rem;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--cream);text-decoration:none;
+  border:1px solid var(--line);padding:.5rem 1rem;
+  transition:all .3s;cursor:none;
+}
+.share a:hover{border-color:var(--gold2);color:var(--gold)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.reveal.vis{opacity:1;transform:translateY(0)}
+
+/* Related */
+.related{
+  padding:6rem 4rem;
+  border-top:1px solid var(--line);
+  background:var(--bg2);
+}
+.rel-label{
+  font-family:'Space Mono',monospace;font-size:.6rem;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:3rem;display:flex;align-items:center;gap:1.5rem;
+}
+.rel-label::after{content:'';flex:1;height:1px;background:var(--line);max-width:80px}
+.rel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.rel-card{
+  background:var(--bg);border:1px solid var(--line);
+  padding:2rem;text-decoration:none;color:var(--white);
+  transition:border-color .3s,transform .3s;cursor:none;display:block;
+}
+.rel-card:hover{border-color:var(--gold2);transform:translateY(-4px)}
+.rc-y{font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.2em;color:var(--gold);margin-bottom:.8rem}
+.rc-t{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.06em;margin-bottom:.3rem}
+.rc-s{font-family:'Space Mono',monospace;font-size:.46rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cream);opacity:.5}
+
+footer{
+  padding:3rem 4rem;background:#030303;
+  border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.f-logo{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.2em;color:var(--cream);opacity:.4}
+.f-copy{font-family:'Space Mono',monospace;font-size:.5rem;color:var(--cream);opacity:.25;letter-spacing:.1em}
+
+@media(max-width:900px){
+  nav{padding:1.5rem 2rem}
+  .post-hero{grid-template-columns:1fr}
+  .hero-visual{height:60vh}
+  .hero-text{padding:3rem 2rem 4rem}
+  .new-badge{top:auto;bottom:4rem;right:2rem}
+  article{padding:4rem 1.5rem 3rem}
+  .full-img{width:calc(100% + 3rem);margin-left:-1.5rem}
+  .blup-card{grid-template-columns:1fr}
+  .blup-card img{max-width:200px}
+  .related,.rel-grid{padding:4rem 2rem}
+  .rel-grid{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:1rem;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<div class="cur" id="cur"></div>
+<div class="cur-ring" id="curRing"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">G<span>.</span>DI MAURO</a>
+  <a href="index.html" class="nav-back">← Torna al sito</a>
+</nav>
+
+<!-- HERO -->
+<header class="post-hero">
+
+  <!-- Immagine BLUP -->
+  <div class="hero-visual">
+    <img src="/mnt/user-data/uploads/1000090498.webp" alt="BLUP — Nuovo Singolo Gaetano Di Mauro">
+  </div>
+
+  <!-- Testo -->
+  <div class="hero-text">
+    <div class="new-badge">Nuovo Singolo</div>
+    <div class="post-eyebrow">Annuncio · Maggio 2026</div>
+    <h1 class="post-title">BL<span class="accent">U</span>P</h1>
+    <p class="post-subtitle">
+      Il nuovo singolo è in arrivo. Una mascotte, una canzone, una nuova direzione. Dopo <em>Rinse</em>, si va più in profondo.
+    </p>
+    <div class="post-meta">
+      <div class="meta-date">09 · 05 · 2026</div>
+      <div class="meta-tag new">In uscita</div>
+      <div class="meta-tag">Singolo</div>
+      <div class="meta-tag">Elettronica</div>
+    </div>
+  </div>
+
+</header>
+
+<!-- ARTICLE -->
+<article>
+
+  <p class="lead reveal">
+    Si chiama <em>BLUP</em>. È il mio nuovo singolo. Ma prima di essere una canzone, è diventato un personaggio — una mascotte nata per caso, che ha preso vita da sola e ha finito per dare il nome a tutto il progetto.
+  </p>
+
+  <!-- Come è nato BLUP -->
+  <h2 class="art-heading reveal">Come è nato</h2>
+
+  <p class="body reveal">
+    Tutto è partito da una domanda semplice: <strong>la mia musica ha un volto?</strong> Dopo quattordici pubblicazioni, dopo anni di ambient, di elettronica, di chitarre e computer music, mi sono reso conto che mancava qualcosa di visivo. Qualcosa che restasse. Qualcosa che la gente potesse riconoscere anche senza sentire una nota.
+  </p>
+
+  <p class="body reveal">
+    Ho pensato a Eddie degli Iron Maiden. A come quella mascotte sia diventata inseparabile dalla band — quasi più iconica della musica stessa. Ho pensato ai Gorillaz, che hanno costruito un universo visivo intero intorno alla loro musica. E ho pensato: <em>perché no?</em>
+  </p>
+
+  <!-- BLUP card -->
+  <div class="blup-card reveal">
+    <img src="/mnt/user-data/uploads/1000090498.webp" alt="BLUP">
+    <div>
+      <div class="blup-card-name">BL<span>U</span>P</div>
+      <p class="blup-card-desc">
+        Nato nei fondali del Mar Ionio, a largo di Catania. Corpo morbido come un peluche, occhi grandi iridescenti, ricami barocchi siciliani dorati sul petto. Non toglie mai le cuffie. Ascolta tutto. Dimentica poco.
+      </p>
+      <span class="blup-card-origin">🫧 Mar Ionio · Catania · 2026</span>
+    </div>
+  </div>
+
+  <p class="body reveal">
+    Il nome <strong>BLUP</strong> è venuto naturale — è il suono che fa l'acqua quando qualcosa emerge dal fondo. Onomatopeico, universale, registrabile. Funziona in qualsiasi lingua. Ed è esattamente quello che sento quando ascolto questo nuovo materiale: qualcosa che stava sotto da tempo e adesso viene su.
+  </p>
+
+  <div class="pull reveal">
+    "BLUP è il suono che fa l'acqua quando qualcosa emerge dal fondo. Stava lì da sempre."
+  </div>
+
+  <!-- Perché Sicilia -->
+  <h2 class="art-heading reveal">Catania nel corpo</h2>
+
+  <p class="body reveal">
+    I ricami barocchi sul petto di BLUP non sono un dettaglio decorativo — sono identità. Catania, Noto, Ragusa. Il barocco siciliano è quella cosa che ti fa alzare gli occhi e pensare che qualcuno, secoli fa, ha deciso che anche una facciata di chiesa doveva essere una dichiarazione d'amore al mondo. <strong>Ho voluto mettere quella stessa ossessione per il dettaglio nel personaggio.</strong>
+  </p>
+
+  <p class="body reveal">
+    E poi il mare. Il Mar Ionio è sempre stato lì, a due passi, con quella profondità che non vedi ma senti. BLUP viene da lì — da quel buio luminoso che è il fondo del mare catanese. Ha gli occhi di chi ha visto tutto dall'alto e dal basso insieme.
+  </p>
+
+  <!-- Full image -->
+  <figure class="full-img reveal">
+    <img src="/mnt/user-data/uploads/1000090498.webp" alt="BLUP — dettaglio">
+    <figcaption>BLUP — mascotte ufficiale di Gaetano Di Mauro · Catania, 2026</figcaption>
+  </figure>
+
+  <!-- La musica -->
+  <h2 class="art-heading reveal">La musica</h2>
+
+  <p class="body reveal">
+    Dopo <em>Rinse</em> sapevo già dove volevo andare. La direzione era chiara — <strong>più elettronico, più fisico, più grande</strong>. Meno ambient da camera, più qualcosa che si sente nello stomaco. Ho passato settimane ad ascoltare ossessivamente tre nomi che continuavano a tornare.
+  </p>
+
+  <!-- Influences -->
+  <div class="influences reveal">
+    <div class="inf-label">Coordinate sonore · BLUP</div>
+    <div class="inf-tags">
+      <div class="inf-tag">Tame Impala</div>
+      <div class="inf-tag">Daft Punk</div>
+      <div class="inf-tag">Chemical Brothers</div>
+      <div class="inf-tag">Psichedelia Elettronica</div>
+      <div class="inf-tag">Groove</div>
+      <div class="inf-tag">Mar Ionio</div>
+    </div>
+  </div>
+
+  <p class="body reveal">
+    <em>Tame Impala</em> — la loro capacità di fare psichedelia con strumenti elettronici senza perdere il calore umano. Ogni canzone sembra costruita su una sensazione, non su un concetto. <em>Daft Punk</em> — quella perfezione robotica che in qualche modo commuove ancora, trent'anni dopo. <em>Chemical Brothers</em> — il modo in cui costruiscono tensione con la batteria prima ancora che entri qualsiasi melodia.
+  </p>
+
+  <p class="body reveal">
+    Non sto cercando di copiare nessuno di loro. Sto cercando di capire <strong>cosa mi hanno insegnato sulla differenza tra musica elettronica che ti lascia freddo e musica elettronica che ti entra dentro.</strong> BLUP — il singolo — è il mio tentativo di stare da quella parte lì.
+  </p>
+
+  <div class="divider reveal"><span>· In uscita presto ·</span></div>
+
+  <!-- Coming soon -->
+  <div class="cs-box reveal">
+    <span class="cs-label">Nuovo Singolo · 2026</span>
+    <div class="cs-single-title">BL<span>U</span>P</div>
+    <p class="cs-single-sub">
+      Il singolo sarà disponibile su tutti gli store digitali. Seguimi per sapere la data esatta appena confermata.
+    </p>
+    <div class="cs-stores">
+      <div class="cs-store">Spotify</div>
+      <div class="cs-store">Apple Music</div>
+      <div class="cs-store">YouTube</div>
+      <div class="cs-store">SoundCloud</div>
+      <div class="cs-store">Deezer</div>
+      <div class="cs-store">Amazon Music</div>
+      <div class="cs-store">Tidal</div>
+    </div>
+    <a href="https://www.instagram.com/gd_yeah" target="_blank" class="cs-cta">
+      Seguimi su Instagram per la data ↗
+    </a>
+  </div>
+
+  <!-- Share -->
+  <div class="share reveal">
+    <span class="share-lbl">Condividi</span>
+    <a href="https://www.instagram.com/gd_yeah" target="_blank">Instagram</a>
+    <a href="https://x.com/GDgaetano" target="_blank">Twitter / X</a>
+    <a href="https://www.facebook.com/GaetanoDiMauro/" target="_blank">Facebook</a>
+    <a href="https://wa.me/?text=BLUP - nuovo singolo di Gaetano Di Mauro in arrivo! gaetanodimauromusic.altervista.org" target="_blank">WhatsApp</a>
+  </div>
+
+</article>
+
+<!-- Related -->
+<section class="related">
+  <div class="rel-label">Ascolta nel frattempo</div>
+  <div class="rel-grid">
+    <a href="https://open.spotify.com/intl-it/artist/6g0cjIYZJshZkCjBRf6W8Z" target="_blank" class="rel-card reveal">
+      <div class="rc-y">2025</div>
+      <div class="rc-t">Rinse</div>
+      <div class="rc-s">Singolo precedente · Spotify</div>
+    </a>
+    <a href="ausosa.html" class="rel-card reveal">
+      <div class="rc-y">2024</div>
+      <div class="rc-t">Ausosa</div>
+      <div class="rc-s">Album · 9 tracce</div>
+    </a>
+    <a href="index.html#discografia" class="rel-card reveal">
+      <div class="rc-y">2015–2025</div>
+      <div class="rc-t">Tutta la discografia</div>
+      <div class="rc-s">14 pubblicazioni</div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="f-logo">Gaetano Di Mauro</div>
+  <div class="f-copy">© 2026 — Tutti i diritti riservati</div>
+</footer>
+
+<script>
+// cursor
+const cur=document.getElementById('cur'),ring=document.getElementById('curRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cur.style.left=mx-4+'px';cur.style.top=my-4+'px';
+});
+(function tick(){
+  rx+=(mx-rx)*.1;ry+=(my-ry)*.1;
+  ring.style.left=rx-14+'px';ring.style.top=ry-14+'px';
+  requestAnimationFrame(tick);
+})();
+document.addEventListener('mouseover',e=>{
+  if(e.target.closest('a,.inf-tag,.cs-store')){
+    cur.style.transform='scale(3)';
+    ring.style.width='44px';ring.style.height='44px';
+  }
+});
+document.addEventListener('mouseout',e=>{
+  if(e.target.closest('a,.inf-tag,.cs-store')){
+    cur.style.transform='scale(1)';
+    ring.style.width='28px';ring.style.height='28px';
+  }
+});
+
+// reveal on scroll
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting)setTimeout(()=>e.target.classList.add('vis'),i*70);
+  });
+},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
