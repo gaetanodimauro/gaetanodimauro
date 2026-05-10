@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLUP — Nuovo Singolo · Gaetano Di Mauro</title>
+<meta name="description" content="BLUP è il nuovo singolo di Gaetano Di Mauro. Elettronica, groove e barocco siciliano. In uscita 2026.">
+<meta property="og:title" content="BLUP — Nuovo Singolo · Gaetano Di Mauro">
+<meta property="og:image" content="https://www.gaetanodimauro.com/img/cover-blup.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#06060a;--bg2:#09090f;--white:#f0ede8;--cream:#c8c0b0;--gold:#b8963e;--gold2:#7a5c20;--cyan:#00d4ff;--line:rgba(255,255,255,0.07)}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:'Cormorant Garamond',serif;overflow-x:hidden;cursor:none}
+.cur{width:8px;height:8px;background:var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transition:transform .15s;mix-blend-mode:screen}
+.cur-ring{width:28px;height:28px;border:1px solid rgba(184,150,62,.4);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transition:all .4s ease}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.025;z-index:9990;pointer-events:none}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:2rem 4rem;background:linear-gradient(to bottom,rgba(6,6,10,.95),transparent)}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.2em;color:var(--white);text-decoration:none}
+.nav-logo span{color:var(--gold)}
+.nav-back{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cream);text-decoration:none;display:flex;align-items:center;gap:.6rem;opacity:.6;transition:opacity .3s;cursor:none}
+.nav-back:hover{opacity:1}
+
+/* HERO */
+#hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden}
+#hero::after{content:'';position:absolute;top:0;bottom:0;left:50%;width:1px;background:linear-gradient(to bottom,transparent,rgba(184,150,62,.12),transparent);pointer-events:none}
+
+.hero-cover-col{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:8rem 3rem 6rem 4rem}
+.cover-aura{position:absolute;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(0,212,255,.09) 0%,rgba(184,150,62,.04) 45%,transparent 70%);animation:aura 5s ease-in-out infinite;pointer-events:none}
+@keyframes aura{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.1);opacity:1}}
+.hero-cover{position:relative;z-index:2;width:100%;max-width:440px;display:block;border-radius:4px;box-shadow:0 40px 120px rgba(0,0,0,.7),0 0 60px rgba(0,212,255,.06);animation:cfloat 6s ease-in-out infinite}
+@keyframes cfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+.hero-text-col{display:flex;flex-direction:column;justify-content:flex-end;padding:8rem 4rem 6rem 3rem;position:relative;z-index:2}
+.new-badge{font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.28em;text-transform:uppercase;color:var(--bg);background:var(--cyan);padding:.45rem 1rem;display:inline-block;width:fit-content;margin-bottom:2rem;opacity:0;animation:bpop .6s ease .2s forwards,blink 2.5s ease-in-out 1s infinite}
+@keyframes bpop{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+@keyframes blink{0%,100%{box-shadow:0 0 0 0 rgba(0,212,255,.3)}50%{box-shadow:0 0 18px 4px rgba(0,212,255,.15)}}
+.eyebrow{font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;opacity:0;animation:fup .8s ease .4s forwards}
+.eyebrow::before{content:'';width:24px;height:1px;background:var(--gold)}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(5rem,10vw,10rem);line-height:.85;letter-spacing:.04em;color:var(--white);opacity:0;animation:fup .9s ease .6s forwards}
+.hero-title span{color:var(--cyan)}
+.hero-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:1.3rem;color:var(--cream);margin-top:1.2rem;opacity:0;animation:fup .9s ease .8s forwards}
+.hero-pills{display:flex;align-items:center;gap:1rem;margin-top:2rem;opacity:0;animation:fup .9s ease 1s forwards}
+.pill{font-family:'Space Mono',monospace;font-size:.48rem;letter-spacing:.18em;text-transform:uppercase;border:1px solid var(--line);padding:.4rem .9rem;color:var(--cream);opacity:.7}
+.pill.c{border-color:rgba(0,212,255,.35);color:var(--cyan);opacity:1}
+.hero-scroll{position:absolute;right:4rem;bottom:3rem;writing-mode:vertical-rl;font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.2em;color:var(--cream);opacity:.3;display:flex;align-items:center;gap:.8rem}
+.hero-scroll::after{content:'';width:1px;height:50px;background:linear-gradient(to bottom,var(--gold),transparent)}
+@keyframes fup{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* ARTICLE */
+article{max-width:780px;margin:0 auto;padding:7rem 2rem 5rem}
+.lead{font-size:1.5rem;line-height:1.8;font-weight:300;font-style:italic;color:var(--white);border-left:3px solid var(--gold);padding-left:2rem;margin-bottom:4rem}
+p.b{font-size:1.18rem;line-height:2;color:var(--cream);font-weight:300;margin-bottom:2rem}
+p.b em{font-style:italic;color:var(--white)}
+p.b strong{font-weight:400;color:var(--white)}
+.art-h2{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;letter-spacing:.06em;color:var(--white);margin:4rem 0 1.5rem;display:flex;align-items:baseline;gap:1rem}
+.art-h2::after{content:'';flex:1;height:1px;background:linear-gradient(to right,var(--gold2),transparent)}
+.pull{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-style:italic;font-weight:300;color:var(--white);line-height:1.3;text-align:center;padding:3rem 2rem;margin:3rem 0;position:relative}
+.pull::before,.pull::after{content:'';display:block;height:1px;background:linear-gradient(to right,transparent,var(--gold2),transparent)}
+.pull::before{margin-bottom:2rem}.pull::after{margin-top:2rem}
+.influences{background:var(--bg2);border:1px solid var(--line);padding:2.5rem 3rem;margin:3rem 0;position:relative;overflow:hidden}
+.influences::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent)}
+.inf-lbl{font-family:'Space Mono',monospace;font-size:.52rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1.8rem}
+.inf-tags{display:flex;flex-wrap:wrap;gap:.8rem}
+.inf-tag{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.06em;color:var(--white);padding:.3rem 1.2rem;border:1px solid var(--line);transition:border-color .3s,color .3s;cursor:default}
+.inf-tag:hover{border-color:var(--gold2);color:var(--gold)}
+.divider{display:flex;align-items:center;gap:1.5rem;margin:3rem 0}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--line)}
+.divider span{font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
+
+/* TELEGRAM */
+#telegram{border-top:1px solid var(--line);padding:8rem 4rem}
+.sec-lbl{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:4rem;display:flex;align-items:center;gap:1.5rem}
+.sec-lbl::after{content:'';flex:1;height:1px;background:var(--line);max-width:80px}
+.tg-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.tg-img{position:relative;overflow:hidden;background:var(--bg2);border:1px solid var(--line)}
+.tg-img img{width:100%;height:100%;object-fit:cover;display:block}
+.tg-badge-abs{position:absolute;top:1.2rem;left:1.2rem;background:rgba(0,212,255,.92);color:#06060a;font-family:'Space Mono',monospace;font-size:.44rem;letter-spacing:.2em;text-transform:uppercase;padding:.35rem .8rem;font-weight:700}
+.tg-info{background:var(--bg2);border:1px solid var(--line);border-left:none;padding:4rem;display:flex;flex-direction:column;justify-content:center;gap:2rem}
+.tg-ey{font-family:'Space Mono',monospace;font-size:.52rem;letter-spacing:.28em;text-transform:uppercase;color:var(--cyan);display:flex;align-items:center;gap:.8rem}
+.tg-ey::before{content:'';width:16px;height:1px;background:var(--cyan)}
+.tg-t{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,4vw,4rem);line-height:.9;color:var(--white)}
+.tg-d{font-size:1.1rem;line-height:1.9;color:var(--cream);font-weight:300;font-style:italic}
+.tg-list{display:flex;flex-direction:column;gap:.7rem}
+.tg-li{display:flex;align-items:flex-start;gap:1rem;font-size:1rem;color:var(--cream);font-style:italic;line-height:1.6}
+.tg-li::before{content:'✓';font-family:'Space Mono',monospace;font-size:.55rem;color:var(--cyan);flex-shrink:0;margin-top:.3rem}
+.tg-btn{display:inline-flex;align-items:center;gap:.9rem;padding:1.1rem 2.5rem;border:1px solid var(--cyan);color:var(--cyan);font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;transition:all .3s;width:fit-content;cursor:none}
+.tg-btn:hover{background:rgba(0,212,255,.1)}
+.tg-url-lbl{font-family:'Space Mono',monospace;font-size:.44rem;letter-spacing:.14em;color:var(--cream);opacity:.3}
+
+/* STORES */
+#stores{border-top:1px solid var(--line);background:var(--bg2);padding:8rem 4rem;text-align:center}
+.stores-t{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,5rem);line-height:.9;margin-bottom:1.5rem}
+.stores-s{font-size:1.1rem;font-style:italic;color:var(--cream);font-weight:300;margin-bottom:4rem}
+.stores-list{display:flex;flex-direction:column;gap:1px;max-width:600px;margin:0 auto}
+.store-row{display:flex;align-items:center;justify-content:space-between;padding:1.5rem 2rem;background:var(--bg);border:1px solid var(--line);text-decoration:none;color:var(--white);transition:border-color .3s,transform .3s;cursor:none}
+.store-row:hover:not(.soon){border-color:var(--gold2);transform:translateX(6px)}
+.store-n{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.06em}
+.store-tag{font-family:'Space Mono',monospace;font-size:.48rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cream);opacity:.4}
+.store-arr{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--gold);transition:transform .3s}
+.store-row:hover:not(.soon) .store-arr{transform:translateX(6px)}
+.soon{opacity:.3;cursor:default}
+
+/* BACK + FOOTER */
+.back-bar{border-top:1px solid var(--line);padding:3rem 4rem;display:flex;justify-content:space-between;align-items:center}
+.back-lnk{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cream);text-decoration:none;opacity:.5;transition:opacity .3s;cursor:none;display:flex;align-items:center;gap:.6rem}
+.back-lnk:hover{opacity:1}
+footer{padding:3rem 4rem;background:#030303;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.f-logo{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.2em;color:var(--cream);opacity:.4}
+.f-copy{font-family:'Space Mono',monospace;font-size:.5rem;color:var(--cream);opacity:.25;letter-spacing:.1em}
+
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .8s ease,transform .8s ease}
+.reveal.vis{opacity:1;transform:translateY(0)}
+
+@media(max-width:900px){
+  nav{padding:1.5rem 2rem}
+  #hero{grid-template-columns:1fr;min-height:auto}
+  #hero::after{display:none}
+  .hero-cover-col{padding:7rem 2rem 2rem}
+  .hero-text-col{padding:2rem 2rem 5rem;border-top:1px solid var(--line)}
+  article{padding:4rem 1.5rem 3rem}
+  .tg-grid{grid-template-columns:1fr}
+  .tg-info{border-left:1px solid var(--line);border-top:none}
+  #telegram,#stores{padding:5rem 2rem}
+  .back-bar,footer{padding:2rem;flex-direction:column;gap:1rem;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<div class="cur" id="cur"></div>
+<div class="cur-ring" id="curRing"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">G<span>.</span>DI MAURO</a>
+  <a href="index.html" class="nav-back">← Torna al sito</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-cover-col">
+    <div class="cover-aura"></div>
+    <img class="hero-cover" src="./img/cover-blup.jpg" alt="BLUP — Nuovo Singolo Gaetano Di Mauro">
+  </div>
+  <div class="hero-text-col">
+    <div class="new-badge">Nuovo Singolo · 2026</div>
+    <div class="eyebrow">Gaetano Di Mauro</div>
+    <h1 class="hero-title">BL<span>U</span>P</h1>
+    <p class="hero-sub">In uscita — 2026</p>
+    <div class="hero-pills">
+      <div class="pill c">In Uscita</div>
+      <div class="pill">Singolo</div>
+      <div class="pill">Elettronica</div>
+    </div>
+  </div>
+  <div class="hero-scroll">scroll</div>
+</section>
+
+<!-- ARTICLE -->
+<article>
+  <p class="lead reveal">
+    Si chiama <em>BLUP</em>. È il mio nuovo singolo — il primo con un nome che non è solo un titolo. È un personaggio, un universo, un suono. Nato dal fondo del mare catanese.
+  </p>
+
+  <h2 class="art-h2 reveal">Come è nato tutto</h2>
+
+  <p class="b reveal">
+    Dopo <em>Rinse</em> non mi sono fermato. Mi sono immerso ancora più in profondo. Avevo voglia di qualcosa di più fisico, più elettronico, più grande. Qualcosa che si sentisse nello stomaco prima ancora che nelle orecchie.
+  </p>
+
+  <p class="b reveal">
+    Il nome BLUP è venuto quasi da solo. È il suono che fa l'acqua quando qualcosa emerge dal fondo — onomatopeico, immediato, universale. <strong>E descrive esattamente quello che sento in questo singolo: qualcosa che stava sotto da tempo e adesso viene su.</strong>
+  </p>
+
+  <div class="pull reveal">
+    "BLUP è il suono che fa l'acqua quando qualcosa emerge dal fondo. Stava lì da sempre."
+  </div>
+
+  <p class="b reveal">
+    Insieme al singolo è nata una mascotte — BLUP, una creatura del Mar Ionio con il corpo morbido come un peluche, gli occhi iridescenti e i ricami barocchi siciliani dorati sul petto. <strong>Catania dentro, in ogni senso.</strong> Il barocco siciliano è quella cosa che ti fa alzare gli occhi e pensare che qualcuno, secoli fa, ha deciso che anche una facciata di chiesa doveva essere una dichiarazione d'amore al mondo. Ho voluto mettere quella stessa ossessione per il dettaglio in questo progetto.
+  </p>
+
+  <h2 class="art-h2 reveal">La direzione musicale</h2>
+
+  <p class="b reveal">
+    Ho passato settimane ad ascoltare ossessivamente tre nomi. <em>Tame Impala</em> — la loro capacità di fare psichedelia elettronica senza perdere il calore umano. <em>Daft Punk</em> — quella perfezione robotica che in qualche modo commuove ancora, trent'anni dopo. <em>Chemical Brothers</em> — il modo in cui costruiscono tensione con la batteria prima ancora che entri qualsiasi melodia.
+  </p>
+
+  <div class="influences reveal">
+    <div class="inf-lbl">Coordinate sonore · BLUP</div>
+    <div class="inf-tags">
+      <div class="inf-tag">Tame Impala</div>
+      <div class="inf-tag">Daft Punk</div>
+      <div class="inf-tag">Chemical Brothers</div>
+      <div class="inf-tag">Groove</div>
+      <div class="inf-tag">Mar Ionio</div>
+    </div>
+  </div>
+
+  <p class="b reveal">
+    Non sto cercando di copiare nessuno di loro. Sto cercando di capire <strong>cosa mi hanno insegnato sulla differenza tra musica elettronica che ti lascia freddo e musica elettronica che ti entra dentro.</strong> BLUP è il mio tentativo di stare dalla parte giusta.
+  </p>
+
+  <div class="divider reveal"><span>· Segui per la data ·</span></div>
+</article>
+
+<!-- TELEGRAM -->
+<section id="telegram">
+  <div class="sec-lbl reveal">Sticker Pack · Telegram</div>
+  <div class="tg-grid">
+    <div class="tg-img reveal">
+      <img src="./img/blup-stickers-preview.jpg" alt="BLUP Sticker Pack — anteprima" loading="lazy">
+      <div class="tg-badge-abs">Disponibile ora · Gratis</div>
+    </div>
+    <div class="tg-info reveal">
+      <div class="tg-ey">Pacchetto Ufficiale</div>
+      <div class="tg-t">BLUP<br>su Telegram</div>
+      <p class="tg-d">Il mondo di BLUP è già atterrato su Telegram. Un pacchetto sticker ufficiale con tutte le sue espressioni — BLUP che suona la chitarra, che applaude, che ti fulmina con lo sguardo. Inizia a "bluppare" nelle tue chat.</p>
+      <div class="tg-list">
+        <div class="tg-li">BLUP felice, arrabbiato, con la chitarra, che applaude</div>
+        <div class="tg-li">Note musicali e bolle sonore incluse</div>
+        <div class="tg-li">Completamente gratuiti — per sempre</div>
+      </div>
+      <a href="https://t.me/addstickers/Blupsticks" target="_blank" class="tg-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.016 9.504c-.148.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L6.48 14.51l-2.95-.924c-.64-.203-.654-.64.136-.948l11.532-4.448c.533-.194 1.001.13.364.958z"/></svg>
+        Aggiungi su Telegram ↗
+      </a>
+      <div class="tg-url-lbl">t.me/addstickers/Blupsticks</div>
+    </div>
+  </div>
+</section>
+
+<!-- STORES -->
+<section id="stores">
+  <h2 class="stores-t reveal">In uscita su<br>tutti gli store</h2>
+  <p class="stores-s reveal">Seguimi su Instagram per la data esatta</p>
+  <div class="stores-list reveal">
+    <a href="https://open.spotify.com/intl-it/artist/6g0cjIYZJshZkCjBRf6W8Z" target="_blank" class="store-row">
+      <div class="store-n">Spotify</div><div class="store-tag">Streaming</div><div class="store-arr">→</div>
+    </a>
+    <div class="store-row soon"><div class="store-n">Apple Music</div><div class="store-tag">In arrivo</div><div class="store-arr">—</div></div>
+    <div class="store-row soon"><div class="store-n">YouTube</div><div class="store-tag">In arrivo</div><div class="store-arr">—</div></div>
+    <div class="store-row soon"><div class="store-n">Deezer</div><div class="store-tag">In arrivo</div><div class="store-arr">—</div></div>
+    <div class="store-row soon"><div class="store-n">Amazon Music</div><div class="store-tag">In arrivo</div><div class="store-arr">—</div></div>
+    <a href="https://soundcloud.com/gaetanodimauro" target="_blank" class="store-row">
+      <div class="store-n">SoundCloud</div><div class="store-tag">Streaming</div><div class="store-arr">→</div>
+    </a>
+  </div>
+</section>
+
+<div class="back-bar">
+  <a href="index.html" class="back-lnk">← Torna al sito</a>
+  <a href="https://www.instagram.com/gd_yeah" target="_blank" class="back-lnk">Seguimi su Instagram ↗</a>
+</div>
+
+<footer>
+  <div class="f-logo">Gaetano Di Mauro · BLUP · 2026</div>
+  <div class="f-copy">© 2026 — Tutti i diritti riservati</div>
+</footer>
+
+<script>
+const cur=document.getElementById('cur'),ring=document.getElementById('curRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx-4+'px';cur.style.top=my-4+'px';});
+(function tick(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx-14+'px';ring.style.top=ry-14+'px';requestAnimationFrame(tick);})();
+document.addEventListener('mouseover',e=>{if(e.target.closest('a,.inf-tag')){cur.style.transform='scale(3)';ring.style.width='44px';ring.style.height='44px';}});
+document.addEventListener('mouseout',e=>{if(e.target.closest('a,.inf-tag')){cur.style.transform='scale(1)';ring.style.width='28px';ring.style.height='28px';}});
+const obs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('vis'),i*70);});},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
