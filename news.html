@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>News — Gaetano Di Mauro | Aggiornamenti & Uscite</title>
+
+<meta name="description" content="Tutte le news di Gaetano Di Mauro: nuove uscite, aggiornamenti, collaborazioni e date live. Musicista e compositore catanese.">
+<meta name="keywords" content="Gaetano Di Mauro news, aggiornamenti, BLUP singolo, Rinse, Ausosa, uscite musicali">
+<meta name="author" content="Gaetano Di Mauro">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://gaetanodimauro.com/news.html">
+
+<meta property="og:type"        content="website">
+<meta property="og:title"       content="News — Gaetano Di Mauro">
+<meta property="og:description" content="Aggiornamenti, nuove uscite e notizie dal mondo di Gaetano Di Mauro.">
+<meta property="og:image"       content="https://www.gaetanodimauro.com/img/cover-blup.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Bebas+Neue&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:    #060606;
+  --bg2:   #0d0d0d;
+  --bg3:   #111;
+  --white: #f0ede8;
+  --cream: #bdb5a6;
+  --gold:  #b8963e;
+  --gold2: rgba(184,150,62,.25);
+  --gold3: rgba(184,150,62,.07);
+  --cyan:  #0dd;
+  --line:  rgba(255,255,255,0.07);
+  --line2: rgba(255,255,255,0.13);
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { background:var(--bg); color:var(--white); font-family:'Cormorant Garamond',serif; overflow-x:hidden; cursor:none; }
+body::after { content:''; position:fixed; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E"); opacity:.025; z-index:9990; pointer-events:none; }
+
+.cursor      { width:6px; height:6px; background:var(--gold); border-radius:50%; position:fixed; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); mix-blend-mode:screen; transition:transform .12s ease; }
+.cursor-ring { width:28px; height:28px; border:1px solid rgba(184,150,62,.4); border-radius:50%; position:fixed; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:width .3s, height .3s; }
+
+/* ── NAV ── */
+nav { position:fixed; top:0; left:0; right:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:1.8rem 4rem; }
+nav::before { content:''; position:absolute; inset:0; background:linear-gradient(to bottom,rgba(6,6,6,.97) 0%,transparent 100%); pointer-events:none; }
+.nav-logo { font-family:'Bebas Neue',sans-serif; font-size:1.3rem; letter-spacing:.22em; color:var(--white); text-decoration:none; position:relative; z-index:1; }
+.nav-logo span { color:var(--gold); }
+.nav-links { display:flex; gap:2.2rem; list-style:none; align-items:center; position:relative; z-index:1; }
+.nav-links a { font-family:'Space Mono',monospace; font-size:.55rem; letter-spacing:.18em; text-transform:uppercase; color:var(--cream); text-decoration:none; transition:color .25s; position:relative; }
+.nav-links a::after { content:''; position:absolute; bottom:-3px; left:0; right:0; height:1px; background:var(--gold); transform:scaleX(0); transform-origin:left; transition:transform .3s ease; }
+.nav-links a:hover, .nav-links a.active { color:var(--gold); }
+.nav-links a.active::after, .nav-links a:hover::after { transform:scaleX(1); }
+.nav-cta { padding:.5rem 1.4rem !important; border:1px solid var(--gold2) !important; color:var(--gold) !important; transition:all .3s !important; }
+.nav-cta:hover { background:var(--gold3) !important; }
+.lang-switch { display:flex; gap:2px; margin-left:.8rem; }
+.lang-btn { font-family:'Space Mono',monospace; font-size:.52rem; letter-spacing:.12em; padding:.3rem .6rem; border:1px solid var(--line2); background:transparent; color:var(--cream); cursor:none; transition:all .25s; }
+.lang-btn.active { border-color:var(--gold); color:var(--gold); background:var(--gold3); }
+
+/* ── PAGE HERO ── */
+#page-hero {
+  padding:13rem 4rem 5rem;
+  border-bottom:1px solid var(--line);
+  position:relative; overflow:hidden;
+}
+#page-hero::before {
+  content:'NEWS';
+  position:absolute; bottom:-2rem; right:-.5rem;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(10rem,22vw,24rem);
+  color:rgba(255,255,255,.018); line-height:1;
+  pointer-events:none; white-space:nowrap;
+}
+.page-eyebrow { font-family:'Space Mono',monospace; font-size:.56rem; letter-spacing:.35em; text-transform:uppercase; color:var(--gold); display:flex; align-items:center; gap:1.2rem; margin-bottom:1.4rem; opacity:0; animation:slideUp .9s ease .1s forwards; }
+.page-eyebrow::before { content:''; width:32px; height:1px; background:var(--gold); }
+h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(5rem,13vw,13rem); line-height:.88; letter-spacing:-.01em; opacity:0; animation:slideUp .9s ease .25s forwards; }
+.page-desc { font-size:1.1rem; font-weight:300; font-style:italic; color:var(--cream); line-height:1.8; margin-top:1.8rem; max-width:420px; opacity:0; animation:slideUp .9s ease .45s forwards; }
+
+/* ── FEATURED POST ── */
+#featured { padding:5rem 4rem 0; }
+
+.featured-card {
+  display:grid; grid-template-columns:1fr 1fr;
+  background:var(--bg2); border:1px solid var(--line);
+  overflow:hidden; text-decoration:none; color:var(--white);
+  transition:border-color .35s;
+  position:relative;
+}
+.featured-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(to right, transparent, var(--cyan), transparent);
+  transform:scaleX(0); transform-origin:center; transition:transform .5s ease;
+}
+.featured-card:hover { border-color:rgba(0,221,221,.3); }
+.featured-card:hover::before { transform:scaleX(1); }
+
+.feat-img { position:relative; overflow:hidden; min-height:420px; }
+.feat-img img { width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(15%) brightness(.8); transition:filter .5s, transform .5s; }
+.featured-card:hover .feat-img img { filter:grayscale(0%) brightness(.95); transform:scale(1.04); }
+.feat-img-overlay { position:absolute; inset:0; background:linear-gradient(to right,transparent 60%,var(--bg2)); pointer-events:none; }
+
+.feat-body {
+  padding:4rem;
+  display:flex; flex-direction:column; justify-content:space-between;
+}
+.feat-meta { display:flex; align-items:center; gap:1rem; margin-bottom:2rem; flex-wrap:wrap; }
+.feat-nuovo {
+  display:inline-flex; align-items:center; gap:.5rem;
+  font-family:'Space Mono',monospace; font-size:.44rem; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--bg); background:var(--cyan); padding:.35rem .85rem;
+  animation:pulse 2.5s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(0,221,221,.4)} 50%{box-shadow:0 0 0 8px rgba(0,221,221,0)} }
+.feat-cat { font-family:'Space Mono',monospace; font-size:.46rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+.feat-date { font-family:'Space Mono',monospace; font-size:.44rem; letter-spacing:.15em; color:var(--cream); opacity:.4; margin-left:auto; }
+
+.feat-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(2.5rem,5vw,4.5rem); line-height:.95; margin-bottom:1.5rem; }
+.feat-excerpt { font-size:1.1rem; font-weight:300; color:var(--cream); line-height:1.8; margin-bottom:2.5rem; }
+.feat-cta {
+  display:inline-flex; align-items:center; gap:.8rem;
+  font-family:'Space Mono',monospace; font-size:.56rem; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--cyan); border:1px solid rgba(0,221,221,.35); padding:.9rem 2rem;
+  text-decoration:none; transition:all .3s; width:fit-content;
+}
+.feat-cta:hover { background:rgba(0,221,221,.07); border-color:var(--cyan); }
+
+/* ── NEWS GRID ── */
+#news-grid { padding:4rem 4rem 8rem; }
+.grid-label {
+  font-family:'Space Mono',monospace; font-size:.54rem; letter-spacing:.3em; text-transform:uppercase;
+  color:var(--gold); display:flex; align-items:center; gap:1.4rem; margin-bottom:3rem;
+}
+.grid-label::after { content:''; flex:1; height:1px; background:var(--line2); max-width:80px; }
+
+.news-list { display:flex; flex-direction:column; gap:2px; }
+
+.news-card {
+  display:grid; grid-template-columns:200px 1fr auto;
+  align-items:center; gap:3rem;
+  padding:2.5rem 3rem;
+  background:var(--bg2); border:1px solid var(--line);
+  text-decoration:none; color:var(--white);
+  transition:background .3s, border-color .3s, transform .3s;
+  position:relative; overflow:hidden;
+}
+.news-card::before {
+  content:''; position:absolute; left:0; top:0; bottom:0; width:2px;
+  background:linear-gradient(to bottom,transparent,var(--gold),transparent);
+  transform:scaleY(0); transform-origin:center; transition:transform .4s ease;
+}
+.news-card:hover { background:var(--bg3); border-color:var(--gold2); transform:translateX(5px); }
+.news-card:hover::before { transform:scaleY(1); }
+
+.news-card-cover { width:200px; height:130px; object-fit:cover; display:block; filter:grayscale(25%) brightness(.8); transition:filter .4s; flex-shrink:0; }
+.news-card:hover .news-card-cover { filter:grayscale(0%) brightness(.95); }
+
+.news-card-body {}
+.news-card-meta { display:flex; align-items:center; gap:1rem; margin-bottom:.8rem; flex-wrap:wrap; }
+.news-card-cat { font-family:'Space Mono',monospace; font-size:.46rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+.news-card-date { font-family:'Space Mono',monospace; font-size:.44rem; letter-spacing:.14em; color:var(--cream); opacity:.4; }
+.news-card-title { font-family:'Bebas Neue',sans-serif; font-size:1.8rem; letter-spacing:.04em; line-height:1.05; margin-bottom:.7rem; }
+.news-card-excerpt { font-size:1rem; font-weight:300; color:var(--cream); opacity:.7; line-height:1.65; }
+
+.news-card-arrow { font-family:'Space Mono',monospace; font-size:.8rem; color:var(--gold); opacity:.5; flex-shrink:0; transition:transform .3s, opacity .3s; }
+.news-card:hover .news-card-arrow { transform:translateX(5px); opacity:1; }
+
+/* ── FOOTER ── */
+footer { border-top:1px solid var(--line); background:#030303; }
+.footer-social { padding:3.5rem 4rem; display:flex; gap:1.5rem; justify-content:center; border-bottom:1px solid var(--line); flex-wrap:wrap; }
+.social-pill { font-family:'Space Mono',monospace; font-size:.52rem; letter-spacing:.15em; text-transform:uppercase; padding:.6rem 1.4rem; border:1px solid var(--line2); color:var(--cream); text-decoration:none; transition:all .3s; }
+.social-pill:hover { border-color:var(--gold2); color:var(--gold); background:var(--gold3); }
+.footer-bottom { padding:2.5rem 4rem; display:flex; justify-content:space-between; align-items:center; }
+.footer-logo { font-family:'Bebas Neue',sans-serif; font-size:1.1rem; letter-spacing:.22em; color:var(--cream); opacity:.35; }
+.footer-copy { font-family:'Space Mono',monospace; font-size:.5rem; letter-spacing:.12em; color:var(--cream); opacity:.25; }
+
+.reveal { opacity:0; transform:translateY(28px); transition:opacity .75s ease, transform .75s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+@keyframes slideUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+
+@media(max-width:900px) {
+  nav { padding:1.4rem 1.5rem; }
+  .nav-links { display:none; }
+  #page-hero { padding:9rem 1.5rem 4rem; }
+  #featured { padding:3rem 1.5rem 0; }
+  .featured-card { grid-template-columns:1fr; }
+  .feat-img { min-height:260px; }
+  .feat-img-overlay { background:linear-gradient(to top,var(--bg2) 0%,transparent 50%); }
+  .feat-body { padding:2.5rem; }
+  #news-grid { padding:3rem 1.5rem 5rem; }
+  .news-card { grid-template-columns:1fr; gap:1.5rem; }
+  .news-card-cover { width:100%; height:200px; }
+  .news-card-arrow { display:none; }
+  .footer-bottom { flex-direction:column; gap:1rem; text-align:center; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor"      id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <a href="index.html" class="nav-logo">G<span>.</span>DI MAURO</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">Biografia</a></li>
+    <li><a href="index.html#discografia">Discografia</a></li>
+    <li><a href="index.html#press">Press</a></li>
+    <li><a href="index.html#galleria">Galleria</a></li>
+    <li><a href="index.html#dj">DJ Set</a></li>
+    <li><a href="news.html" class="active">News</a></li>
+    <li><a href="blup.html" style="color:var(--cyan)">🫧 BLUP</a></li>
+    <li><a href="the-amp.html" style="color:#d42020">The Amp</a></li>
+    <li><a href="index.html#contatti" class="nav-cta">Contatti</a></li>
+  </ul>
+</nav>
+
+<!-- ══ PAGE HERO ══ -->
+<section id="page-hero">
+  <p class="page-eyebrow">Gaetano Di Mauro</p>
+  <h1>News</h1>
+  <p class="page-desc">Aggiornamenti, nuove uscite, dietro le quinte e date live. Tutto quello che succede nel mio mondo musicale.</p>
+</section>
+
+<!-- ══ FEATURED — BLUP ══ -->
+<section id="featured">
+  <a href="news-blup.html" class="featured-card reveal">
+    <div class="feat-img">
+      <img src="./img/cover-blup.jpg" alt="BLUP — Nuovo Singolo">
+      <div class="feat-img-overlay"></div>
+    </div>
+    <div class="feat-body">
+      <div>
+        <div class="feat-meta">
+          <span class="feat-nuovo">🫧 NUOVO</span>
+          <span class="feat-cat">Singolo in uscita</span>
+          <span class="feat-date">2026</span>
+        </div>
+        <h2 class="feat-title">BLUP — il nuovo singolo è in arrivo</h2>
+        <p class="feat-excerpt">
+          Si chiama BLUP. È il mio nuovo singolo — il primo con un nome che non è solo un titolo. È un personaggio, un universo sonoro nato dal fondo del Mar Ionio. Elettronica, groove e barocco siciliano.
+        </p>
+      </div>
+      <span class="feat-cta">Leggi tutto →</span>
+    </div>
+  </a>
+</section>
+
+<!-- ══ ALTRE NEWS ══ -->
+<section id="news-grid">
+  <div class="grid-label reveal">Archivio news</div>
+  <div class="news-list">
+
+    <a href="news-rinse.html" class="news-card reveal">
+      <img class="news-card-cover" src="./img/cover-Rinse.jpg" alt="Rinse">
+      <div class="news-card-body">
+        <div class="news-card-meta">
+          <span class="news-card-cat">Singolo</span>
+          <span class="news-card-date">2025</span>
+        </div>
+        <div class="news-card-title">Rinse — fuori su tutte le piattaforme</div>
+        <div class="news-card-excerpt">Il singolo precedente, disponibile ovunque. Un brano che nasce dall'idea della musica come processo di pulizia emotiva.</div>
+      </div>
+      <div class="news-card-arrow">→</div>
+    </a>
+
+    <a href="news-ausosa.html" class="news-card reveal">
+      <img class="news-card-cover" src="./img/cover-Ausosa.jpeg" alt="Ausosa">
+      <div class="news-card-body">
+        <div class="news-card-meta">
+          <span class="news-card-cat">Album</span>
+          <span class="news-card-date">2024</span>
+        </div>
+        <div class="news-card-title">Ausosa — l'album è fuori</div>
+        <div class="news-card-excerpt">Nove brani che raccontano guerra, pace ed emozione umana. Recensito da Rockit.it con grande entusiasmo.</div>
+      </div>
+      <div class="news-card-arrow">→</div>
+    </a>
+
+    <a href="news-interplay.html" class="news-card reveal">
+      <img class="news-card-cover" src="https://gaetanodimauromusic.altervista.org/wp-content/uploads/2021/03/Gaetano-Di-Mauro-Antonino-Cortese-Interplay-Cover-album-960x960.png" alt="Interplay">
+      <div class="news-card-body">
+        <div class="news-card-meta">
+          <span class="news-card-cat">Collaborazione</span>
+          <span class="news-card-date">2021</span>
+        </div>
+        <div class="news-card-title">Interplay con Antonino Cortese</div>
+        <div class="news-card-excerpt">Un EP nato dalla collaborazione con il pianista Antonino Cortese. Cinque brani che fondono ambient, jazz e musica da camera.</div>
+      </div>
+      <div class="news-card-arrow">→</div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-social">
+    <a href="https://www.instagram.com/gd_yeah"               target="_blank" class="social-pill">Instagram</a>
+    <a href="https://www.facebook.com/GaetanoDiMauro/"         target="_blank" class="social-pill">Facebook</a>
+    <a href="https://x.com/GDgaetano"                          target="_blank" class="social-pill">Twitter / X</a>
+    <a href="https://www.youtube.com/c/GaetanoDiMauro"         target="_blank" class="social-pill">YouTube</a>
+    <a href="https://soundcloud.com/gaetanodimauro"            target="_blank" class="social-pill">SoundCloud</a>
+    <a href="https://open.spotify.com/intl-it/artist/6g0cjIYZJshZkCjBRf6W8Z" target="_blank" class="social-pill">Spotify</a>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-logo">Gaetano Di Mauro</div>
+    <div class="footer-copy">© 2026 — Tutti i diritti riservati</div>
+  </div>
+</footer>
+
+<script>
+const cursor=document.getElementById('cursor'), ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+(function ar(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(ar);})();
+document.addEventListener('mouseover',e=>{if(e.target.closest('a,button')){cursor.style.transform='translate(-50%,-50%) scale(2.5)';ring.style.width='42px';ring.style.height='42px';}});
+document.addEventListener('mouseout', e=>{if(e.target.closest('a,button')){cursor.style.transform='translate(-50%,-50%) scale(1)';ring.style.width='28px';ring.style.height='28px';}});
+const obs=new IntersectionObserver(entries=>{ entries.forEach((e,i)=>{ if(e.isIntersecting) setTimeout(()=>e.target.classList.add('visible'),i*70); }); },{threshold:0.07});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
