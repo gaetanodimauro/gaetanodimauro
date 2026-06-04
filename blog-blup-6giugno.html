@@ -231,7 +231,7 @@ footer{padding:3rem 4rem;background:#030303;border-top:1px solid var(--line);dis
 
 <script>
 function updateCD(){
-  const t=new Date('2026-06-06T00:00:00'),n=new Date(),d=t-n;
+  const t=new Date('2026-05-06T00:00:00'),n=new Date(),d=t-n;
   if(d<=0){document.getElementById('countdown2').innerHTML='<div style="font-family:\'Bebas Neue\',sans-serif;font-size:3rem;color:var(--cyan);letter-spacing:.1em">BLUP È FUORI 🫧</div>';return;}
   const days=Math.floor(d/(864e5)),hrs=Math.floor((d%864e5)/36e5),mins=Math.floor((d%36e5)/6e4),secs=Math.floor((d%6e4)/1e3);
   const p=n=>String(n).padStart(2,'0');
